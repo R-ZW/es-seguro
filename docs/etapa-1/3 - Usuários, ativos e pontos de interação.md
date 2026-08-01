@@ -44,7 +44,7 @@ Os principais ativos identificados que precisam ser protegidos são:
 | **Serviço de Geolocalização (Externo)** | Fornece mapas, cálculo de rotas e processa o rastreamento em tempo real dos entregadores. |
 
 ---
-<br>
+<center>
 <table width="100%">
 <tr>
 <td align="left">
@@ -63,8 +63,7 @@ Os principais ativos identificados que precisam ser protegidos são:
 </td>
 </tr>
 </table>
-
----
+</center>
 
 ### Sumário:
 
