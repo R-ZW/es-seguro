@@ -1,47 +1,61 @@
-| **ID**     | **Ator**        | **Título**                          | **Descrição**                                                                                                                                                             | **Prioridade MoSCoW** |
-|------------|-----------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|
-| `US-001` | Usuário Externo | Realizar cadastro                   | Como usuário externo, quero registrar meus dados de identificação, para obter credenciais de acesso à plataforma.                                                         | Must               |
-| `US-002` | Usuário Externo | Manter perfil                       | Como usuário externo, quero gerenciar minhas informações pessoais e preferências, para manter meu cadastro atualizado.                                                    | Must               |
-| `US-003` | Usuário Externo | Manter sessão                       | Como usuário externo, quero autenticar e manter minha conexão segura, para utilizar o sistema sem precisar reinserir credenciais a todo momento.                          | Must               |
-| `US-004` | Usuário Externo | Abrir chamado de suporte            | Como usuário externo, quero registrar ocorrências e adversidades, para solicitar mediação ou resolução de problemas junto à administração.                                | Must               |
-| `US-005` | Admin           | Manter sessão                       | Como administrador, quero autenticar minhas credenciais privilegiadas, para acessar o painel de governança de forma segura.                                               | Must               |
-| `US-006` | Admin           | Gerenciar usuários                  | Como administrador, quero suspender, reativar ou auditar contas, para manter a integridade e a segurança da comunidade na plataforma.                                     | Must               |
-| `US-007` | Admin           | Aprovar cadastro de estabelecimento | Como administrador, quero avaliar os documentos de novos parceiros comerciais, para liberar ou rejeitar a operação deles no sistema.                                      | Must               |
-| `US-008` | Admin           | Aprovar cadastro de entregador      | Como administrador, quero avaliar os documentos e antecedentes de novos entregadores, para autorizá-los a receber solicitações de entrega.                                | Must               |
-| `US-009` | Admin           | Monitorar pedidos                   | Como administrador, quero visualizar o status global de todas as transações, para identificar gargalos sistêmicos ou suspeitas de fraude.                                 | Should             |
-| `US-010` | Admin           | Gerenciar chamados de suporte       | Como administrador, quero analisar e responder às solicitações abertas, para arbitrar disputas e aplicar resoluções manuais (ex: estornos).                               | Must               |
-| `US-011` | Cliente         | Buscar estabelecimentos             | Como cliente, quero pesquisar opções gastronômicas utilizando parâmetros específicos, para encontrar o que desejo consumir.                                               | Must               |
-| `US-012` | Cliente         | Listar estabelecimentos             | Como cliente, quero visualizar um conjunto de estabelecimentos disponíveis, para escolher onde realizarei meu pedido.                                                     | Must               |
-| `US-013` | Cliente         | Visualizar cardápio                 | Como cliente, quero consultar os itens, descrições e preços oferecidos por um parceiro, para decidir o que incluir no meu pedido.                                         | Must               |
-| `US-014` | Cliente         | Montar pedido                       | Como cliente, quero agrupar itens e definir quantidades, para consolidar minha intenção de compra.                                                                        | Must               |
-| `US-015` | Cliente         | Fazer pedido                        | Como cliente, quero enviar minha seleção de itens para processamento, para iniciar o fluxo de compra e preparação.                                                        | Must               |
-| `US-016` | Cliente         | Realizar pagamento                  | Como cliente, quero transferir o valor do pedido para a custódia do sistema, para confirmar a transação e autorizar o preparo.                                            | Must               |
-| `US-017` | Cliente         | Aplicar cupom de desconto           | Como cliente, quero inserir um código promocional, para obter redução no valor final da minha transação.                                                                  | Could              |
-| `US-018` | Cliente         | Acompanhar entrega                  | Como cliente, quero monitorar as mudanças de estado do meu pedido e a localização do entregador, para prever o momento do recebimento.                                    | Should             |
-| `US-019` | Cliente         | Cancelar pedido                     | Como cliente, quero abortar uma solicitação em andamento, para desistir da compra conforme as regras de negócio vigentes.                                                 | Must               |
-| `US-020` | Cliente         | Pagar multa                         | Como cliente, quero que o valor penal correspondente seja deduzido do meu saldo retido, para compensar o estabelecimento por um cancelamento tardio.                      | Must               |
-| `US-021` | Cliente         | Estornar pagamento                  | Como cliente, quero receber o reembolso do valor retido (integral ou parcial), para recuperar meu saldo após um cancelamento.                                             | Must               |
-| `US-022` | Cliente         | Confirmar entrega                   | Como cliente, quero fornecer minha chave de segurança ao entregador, para atestar o recebimento físico e liberar o repasse financeiro dele.                               | Must               |
-| `US-023` | Cliente         | Avaliar estabelecimento             | Como cliente, quero registrar uma nota sobre a qualidade do produto, para cumprir o requisito obrigatório de encerramento do pedido.                                      | Must               |
-| `US-024` | Cliente         | Avaliar entregador                  | Como cliente, quero registrar uma nota sobre o serviço de transporte, para cumprir o requisito obrigatório de encerramento do pedido.                                     | Must               |
-| `US-025` | Cliente         | Visualizar histórico                | Como cliente, quero consultar o registro de todas as minhas transações passadas, para acompanhamento pessoal.                                                             | Should             |
-| `US-026` | Entregador      | Gerenciar crédito de caução         | Como entregador, quero alocar ou retirar fundos do meu saldo de garantia, para estar apto a aceitar rotas de entrega no sistema.                                          | Must               |
-| `US-027` | Entregador      | Alterar disponibilidade             | Como entregador, quero alternar meu status de atividade, para sinalizar ao sistema se estou apto a receber novas rotas.                                                   | Must               |
-| `US-028` | Entregador      | Listar solicitações de entrega      | Como entregador, quero visualizar as ofertas de rotas compatíveis com minha localização, para escolher quais corridas realizar.                                           | Must               |
-| `US-029` | Entregador      | Aceitar solicitação de entrega      | Como entregador, quero confirmar a atribuição de uma rota, para assumir a responsabilidade de buscar e levar o pedido.                                                    | Must               |
-| `US-030` | Entregador      | Atualizar localização               | Como entregador, quero transmitir minhas coordenadas geográficas sequenciais, para permitir o rastreio da entrega pelo cliente e pelo sistema.                            | Should               |
-| `US-031` | Entregador      | Confirmar retirada do produto       | Como entregador, quero validar a chave de segurança gerada pelo estabelecimento, para atestar que coletei a sacola correta e liberar o repasse financeiro do restaurante. | Must               |
-| `US-032` | Entregador      | Confirmar entrega ao cliente        | Como entregador, quero validar a chave de segurança fornecida pelo cliente, para atestar a conclusão da rota e liberar meu repasse e caução.                              | Must               |
-| `US-033` | Estabelecimento | Gerenciar cardápio                  | Como estabelecimento, quero incluir, editar, inativar ou excluir itens e preços, para manter minha oferta atualizada para os clientes.                                    | Must               |
-| `US-034` | Estabelecimento | Gerenciar cupons de desconto        | Como estabelecimento, quero criar, editar ou desativar códigos promocionais atrelados à minha loja, para atrair clientes e impulsionar vendas.                | Could               |
-| `US-035` | Estabelecimento | Gerenciar política de multas        | Como estabelecimento, quero definir percentuais de retenção baseados nos estágios de preparo, para proteger minha operação contra cancelamentos indevidos.                | Must               |
-| `US-036` | Estabelecimento | Listar pedidos                      | Como estabelecimento, quero visualizar as demandas recebidas (com pagamento já retido), para organizar a fila de produção.                                                | Must               |
-| `US-037` | Estabelecimento | Receber pedido                      | Como estabelecimento, quero aceitar uma nova solicitação validada, para dar início ao processo de preparo.                                                                | Must               |
-| `US-038` | Estabelecimento | Atualizar status do pedido          | Como estabelecimento, quero registrar o avanço das etapas de produção, para manter o cliente informado sobre o progresso.                                                 | Must               |
-| `US-039` | Estabelecimento | Solicitar entrega                   | Como estabelecimento, quero notificar o sistema de que o pacote está pronto, para que uma solicitação de rota seja enviada aos entregadores disponíveis.                  | Must               |
-| `US-040` | Estabelecimento | Cancelar pedido                     | Como estabelecimento, quero abortar uma solicitação por impossibilidade de atendimento, para engatilhar automaticamente o estorno integral ao cliente.                    | Must               |
-| `US-041` | Estabelecimento | Finalizar pedido                    | Como estabelecimento, quero encerrar manualmente o ciclo do pedido após a coleta, para fins de controle interno da minha operação.                                        | Should             |
-| `US-042` | Estabelecimento | Visualizar histórico                | Como estabelecimento, quero auditar todas as transações processadas e repasses liberados, para controle de faturamento e gestão contábil.                                 | Should             |
+## 4. Visão geral da arquitetura e fluxo de uso
+
+### 4.1 Casos de uso
+Nesta seção, são apresentados os principais casos de uso que compõem o sistema. Eles descrevem, sob a perspectiva de cada tipo de usuário, as funcionalidades disponíveis na plataforma e os objetivos associados a cada interação. Os casos estão organizados de acordo com os atores envolvidos: cliente, entregador, estabelecimento e administrador; e classificados conforme sua prioridade utilizando o método MoSCoW.
+
+| **ID** | **Ator** | **Título** | **Descrição** | **Prioridade MoSCoW** |
+| --- | --- | --- | --- | --- |
+| `US-001` | Usuário Externo | Realizar cadastro | Como usuário externo, quero registrar meus dados de identificação, para obter credenciais de acesso à plataforma. | Must |
+| `US-002` | Usuário Externo | Manter perfil | Como usuário externo, quero gerenciar minhas informações pessoais e preferências, para manter meu cadastro atualizado. | Must |
+| `US-003` | Usuário Externo | Manter sessão | Como usuário externo, quero autenticar e manter minha conexão segura, para utilizar o sistema sem precisar reinserir credenciais a todo momento. | Must |
+| `US-004` | Usuário Externo | Abrir chamado de suporte | Como usuário externo, quero registrar ocorrências e adversidades, para solicitar mediação ou resolução de problemas junto à administração. | Must |
+| `US-005` | Admin | Manter sessão | Como administrador, quero autenticar minhas credenciais privilegiadas, para acessar o painel de governança de forma segura. | Must |
+| `US-006` | Admin | Gerenciar usuários | Como administrador, quero suspender, reativar ou auditar contas, para manter a integridade e a segurança da comunidade na plataforma. | Must |
+| `US-007` | Admin | Aprovar cadastro de estabelecimento | Como administrador, quero avaliar os documentos de novos parceiros comerciais, para liberar ou rejeitar a operação deles no sistema. | Must |
+| `US-008` | Admin | Aprovar cadastro de entregador | Como administrador, quero avaliar os documentos e antecedentes de novos entregadores, para autorizá-los a receber solicitações de entrega. | Must |
+| `US-009` | Admin | Monitorar pedidos | Como administrador, quero visualizar o status global de todas as transações, para identificar gargalos sistêmicos ou suspeitas de fraude. | Should |
+| `US-010` | Admin | Gerenciar chamados de suporte | Como administrador, quero analisar e responder às solicitações abertas, para arbitrar disputas e aplicar resoluções manuais (ex: estornos). | Must |
+| `US-011` | Cliente | Buscar estabelecimentos | Como cliente, quero pesquisar opções gastronômicas utilizando parâmetros específicos, para encontrar o que desejo consumir. | Must |
+| `US-012` | Cliente | Listar estabelecimentos | Como cliente, quero visualizar um conjunto de estabelecimentos disponíveis, para escolher onde realizarei meu pedido. | Must |
+| `US-013` | Cliente | Visualizar cardápio | Como cliente, quero consultar os itens, descrições e preços oferecidos por um parceiro, para decidir o que incluir no meu pedido. | Must |
+| `US-014` | Cliente | Montar pedido | Como cliente, quero agrupar itens e definir quantidades, para consolidar minha intenção de compra. | Must |
+| `US-015` | Cliente | Fazer pedido | Como cliente, quero enviar minha seleção de itens para processamento, para iniciar o fluxo de compra e preparação. | Must |
+| `US-016` | Cliente | Realizar pagamento | Como cliente, quero transferir o valor do pedido para a custódia do sistema, para confirmar a transação e autorizar o preparo. | Must |
+| `US-017` | Cliente | Aplicar cupom de desconto | Como cliente, quero inserir um código promocional, para obter redução no valor final da minha transação. | Could |
+| `US-018` | Cliente | Acompanhar entrega | Como cliente, quero monitorar as mudanças de estado do meu pedido e a localização do entregador, para prever o momento do recebimento. | Should |
+| `US-019` | Cliente | Cancelar pedido | Como cliente, quero abortar uma solicitação em andamento, para desistir da compra conforme as regras de negócio vigentes. | Must |
+| `US-020` | Cliente | Pagar multa | Como cliente, quero que o valor penal correspondente seja deduzido do meu saldo retido, para compensar o estabelecimento por um cancelamento tardio. | Must |
+| `US-021` | Cliente | Estornar pagamento | Como cliente, quero receber o reembolso do valor retido (integral ou parcial), para recuperar meu saldo após um cancelamento. | Must |
+| `US-022` | Cliente | Confirmar entrega | Como cliente, quero fornecer minha chave de segurança ao entregador, para atestar o recebimento físico e liberar o repasse financeiro dele. | Must |
+| `US-023` | Cliente | Avaliar estabelecimento | Como cliente, quero registrar uma nota sobre a qualidade do produto, para cumprir o requisito obrigatório de encerramento do pedido. | Must |
+| `US-024` | Cliente | Avaliar entregador | Como cliente, quero registrar uma nota sobre o serviço de transporte, para cumprir o requisito obrigatório de encerramento do pedido. | Must |
+| `US-025` | Cliente | Visualizar histórico | Como cliente, quero consultar o registro de todas as minhas transações passadas, para acompanhamento pessoal. | Should |
+| `US-026` | Entregador | Gerenciar crédito de caução | Como entregador, quero alocar ou retirar fundos do meu saldo de garantia, para estar apto a aceitar rotas de entrega no sistema. | Must |
+| `US-027` | Entregador | Alterar disponibilidade | Como entregador, quero alternar meu status de atividade, para sinalizar ao sistema se estou apto a receber novas rotas. | Must |
+| `US-028` | Entregador | Listar solicitações de entrega | Como entregador, quero visualizar as ofertas de rotas compatíveis com minha localização, para escolher quais corridas realizar. | Must |
+| `US-029` | Entregador | Aceitar solicitação de entrega | Como entregador, quero confirmar a atribuição de uma rota, para assumir a responsabilidade de buscar e levar o pedido. | Must |
+| `US-030` | Entregador | Atualizar localização | Como entregador, quero transmitir minhas coordenadas geográficas sequenciais, para permitir o rastreio da entrega pelo cliente e pelo sistema. | Should |
+| `US-031` | Entregador | Confirmar retirada do produto | Como entregador, quero validar a chave de segurança gerada pelo estabelecimento, para atestar que coletei a sacola correta e liberar o repasse financeiro do restaurante. | Must |
+| `US-032` | Entregador | Confirmar entrega ao cliente | Como entregador, quero validar a chave de segurança fornecida pelo cliente, para atestar a conclusão da rota e liberar meu repasse e caução. | Must |
+| `US-033` | Estabelecimento | Gerenciar cardápio | Como estabelecimento, quero incluir, editar, inativar ou excluir itens e preços, para manter minha oferta atualizada para os clientes. | Must |
+| `US-034` | Estabelecimento | Gerenciar cupons de desconto | Como estabelecimento, quero criar, editar ou desativar códigos promocionais atrelados à minha loja, para atrair clientes e impulsionar vendas. | Could |
+| `US-035` | Estabelecimento | Gerenciar política de multas | Como estabelecimento, quero definir percentuais de retenção baseados nos estágios de preparo, para proteger minha operação contra cancelamentos indevidos. | Must |
+| `US-036` | Estabelecimento | Listar pedidos | Como estabelecimento, quero visualizar as demandas recebidas (com pagamento já retido), para organizar a fila de produção. | Must |
+| `US-037` | Estabelecimento | Receber pedido | Como estabelecimento, quero aceitar uma nova solicitação validada, para dar início ao processo de preparo. | Must |
+| `US-038` | Estabelecimento | Atualizar status do pedido | Como estabelecimento, quero registrar o avanço das etapas de produção, para manter o cliente informado sobre o progresso. | Must |
+| `US-039` | Estabelecimento | Solicitar entrega | Como estabelecimento, quero notificar o sistema de que o pacote está pronto, para que uma solicitação de rota seja enviada aos entregadores disponíveis. | Must |
+| `US-040` | Estabelecimento | Cancelar pedido | Como estabelecimento, quero abortar uma solicitação por impossibilidade de atendimento, para engatilhar automaticamente o estorno integral ao cliente. | Must |
+| `US-041` | Estabelecimento | Finalizar pedido | Como estabelecimento, quero encerrar manualmente o ciclo do pedido após a coleta, para fins de controle interno da minha operação. | Should |
+| `US-042` | Estabelecimento | Visualizar histórico | Como estabelecimento, quero auditar todas as transações processadas e repasses liberados, para controle de faturamento e gestão contábil. | Should |
+
+
+### 4.2 Diagrama de casos de uso
+Abaixo é apresentado o diagrama de casos de uso, reunindo os principais atores e suas respectivas interações. O diagrama permite visualizar de forma geral como cada ator se relaciona com as funcionalidades disponíveis.
+
+![Diagrama de casos de uso](../../diagramas/astah/out/casos-de-uso.png)
+
+### 4.3 Fluxo geral de interação
+A partir dos casos de uso apresentados anteriormente, esta seção apresenta uma visão geral de como as principais funcionalidades se conectam durante a realização de um pedido. O fluxo acompanha a jornada desde a escolha dos produtos e o pagamento até o preparo, a coleta, a entrega e o encerramento da transação, destacando também os momentos em que a plataforma realiza a custódia e a liberação dos valores. Dessa forma, o diagrama permite visualizar a interação entre cliente, estabelecimento, entregador e sistema ao longo de todo o ciclo do pedido.
 
 ```mermaid
 flowchart TD
@@ -75,7 +89,7 @@ flowchart TD
         D1["✅ Entregador aceita a solicitação"]
         D2["📍 Entregador desloca-se até o restaurante"]
         E5["🔑 Estabelecimento gera/exibe Chave de Coleta"]
-        D3["📷 Entregador escaneia a Chave de Coleta"]
+        D3["📷 Entregador escaneia a Chave de Coleta e paga a Caução"]
         E1 --> E2 --> E3 --> E4
         E4 --> D1 --> D2
         E4 --> E5
@@ -144,4 +158,4 @@ flowchart TD
     style Fluxo_do_Entregador_2 fill:#fef5f4,stroke:#b03a2e,stroke-width:1.5px,color:#7b241c
     style Fluxo_da_Plataforma_3 fill:#fefbf0,stroke:#d4ac0d,stroke-width:1.5px,color:#7d6608
     style Fluxo_de_Encerramento fill:#f4f9fd,stroke:#2874a6,stroke-width:1.5px,color:#1b4f72
-````
+```
