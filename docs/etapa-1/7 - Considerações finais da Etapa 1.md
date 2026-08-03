@@ -1,0 +1,9 @@
+## 7. Considerações finais da Etapa 1
+
+As ameaças consideradas mais preocupantes são as fraudes financeiras, o acesso indevido às contas e aos dados de outros usuários, a alteração não autorizada de informações e estados dos pedidos, o comprometimento de contas administrativas e a indisponibilidade dos serviços durante períodos de maior demanda. Também merecem atenção os abusos relacionados ao fluxo de pagamentos, aos repasses aos estabelecimentos e à localização de entregadores.
+
+Os ativos mais importantes são as credenciais e sessões dos usuários, os dados pessoais e de localização, as informações dos pedidos, os valores mantidos em custódia, os dados de pagamento e repasse, os cupons e demais regras promocionais, as permissões administrativas e os registros de auditoria.
+
+Os casos de abuso com maior impacto são o sequestro de contas de clientes, a alteração não autorizada dos dados de recebimento dos estabelecimentos, a manipulação dos valores dos pedidos, a liberação indevida de repasses e o acesso não autorizado às funções administrativas. Esses casos podem causar prejuízos financeiros diretos, comprometer dados de usuários e parceiros e afetar a confiança nos processos de pagamento e operação da plataforma.
+
+A principal dificuldade da análise foi diferenciar vulnerabilidades técnicas de situações concretas de abuso relacionadas ao funcionamento do delivery. A utilização do STRIDE ajudou a examinar a plataforma sob diferentes perspectivas, permitindo identificar problemas relacionados à autenticação, autorização, integridade, confidencialidade, rastreabilidade e disponibilidade. Isso também ajudou a observar que uma mesma falha técnica pode resultar em diferentes formas de abuso dependendo do ativo e do processo de negócio afetado.

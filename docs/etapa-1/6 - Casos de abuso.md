@@ -504,3 +504,144 @@
 **Categorias STRIDE relacionadas:** Denial of Service.
 
 ---
+
+### CA19 — Indisponibilização da plataforma por sobrecarga deliberada
+
+**Ator:** atacante externo.
+
+**Objetivo:** degradar ou interromper o funcionamento da plataforma, impedindo que usuários legítimos realizem pedidos.
+
+**Condições necessárias:**
+
+- a API não possui mecanismos eficazes de limitação de requisições por usuário, endereço IP ou outras características do tráfego;
+- a infraestrutura não consegue absorver adequadamente um volume anormal de requisições;
+- não existem mecanismos suficientes para detectar e bloquear tráfego automatizado ou anômalo.
+
+**Fluxo de abuso:**
+
+1. O atacante identifica endpoints da plataforma que consomem recursos relevantes do backend ou do banco de dados.
+2. O atacante automatiza o envio de um grande volume de requisições para esses endpoints.
+3. O volume de requisições aumenta significativamente o consumo de CPU, memória, conexões ou consultas ao banco de dados.
+4. Os recursos da infraestrutura são progressivamente consumidos pelo tráfego malicioso.
+5. As requisições de usuários legítimos passam a sofrer lentidão, erros ou tempos de resposta elevados.
+6. Durante períodos de maior demanda, a sobrecarga impede ou dificulta que clientes realizem pedidos e pagamentos.
+7. O atacante mantém o tráfego malicioso até que os mecanismos de proteção ou a redução da carga restaurem o funcionamento normal da plataforma.
+
+**Impacto esperado:** indisponibilidade ou degradação da plataforma, impossibilidade de realização de pedidos, perda de receita para a plataforma e estabelecimentos e insatisfação dos usuários.
+
+**Categorias STRIDE relacionadas:** Denial of Service.
+
+---
+
+### CA20 — Abuso de operações administrativas por comprometimento de conta privilegiada
+
+**Ator:** atacante externo que obteve acesso a uma conta administrativa.
+
+**Objetivo:** utilizar os privilégios de uma conta administrativa comprometida para executar operações sensíveis em benefício próprio ou para prejudicar outros usuários.
+
+**Condições necessárias:**
+
+- existe uma conta com privilégios administrativos capazes de executar operações sensíveis;
+- o atacante consegue obter as credenciais ou sessão de um administrador;
+- não existem mecanismos adicionais suficientes para proteger operações administrativas críticas;
+- as ações realizadas pelo administrador não possuem monitoramento ou validação adequada.
+
+**Fluxo de abuso:**
+
+1. O atacante obtém as credenciais ou o token de sessão de uma conta administrativa comprometida.
+2. O atacante autentica-se na plataforma utilizando a identidade do administrador.
+3. O sistema reconhece a sessão como pertencente a um usuário legítimo com privilégios administrativos.
+4. O atacante acessa funcionalidades administrativas disponíveis para a conta comprometida.
+5. O atacante executa operações sensíveis, como alterar dados de usuários, aprovar ou bloquear contas ou interferir no tratamento de pedidos e chamados.
+6. As operações são processadas pelo sistema utilizando as permissões legítimas da conta administrativa.
+7. Caso os mecanismos de auditoria não sejam suficientes, o atacante pode dificultar a identificação das operações realizadas durante o período de comprometimento.
+
+**Impacto esperado:** comprometimento de contas e operações de usuários, alterações indevidas em dados e processos administrativos, possibilidade de fraude em escala e perda de confiança nos mecanismos de administração da plataforma.
+
+**Categorias STRIDE relacionadas:** Elevation of Privilege, Spoofing e Repudiation.
+
+---
+
+### CA21 — Saturação do fluxo de pagamentos por transações inválidas automatizadas
+
+**Ator:** atacante externo.
+
+**Objetivo:** sobrecarregar o fluxo de pagamentos e a integração com o Gateway de Pagamento por meio do envio automatizado de operações inválidas ou malsucedidas.
+
+**Condições necessárias:**
+
+- a API permite iniciar ou encaminhar tentativas de pagamento sem limitação adequada de frequência;
+- não existem mecanismos eficazes para identificar padrões anormais de transações;
+- cada tentativa de pagamento gera processamento ou comunicação com o Gateway de Pagamento;
+- o atacante consegue automatizar o envio de pedidos ou tentativas de pagamento.
+
+**Fluxo de abuso:**
+
+1. O atacante identifica uma operação da plataforma que inicia uma tentativa de pagamento junto ao Gateway.
+2. O atacante automatiza o envio de um grande número de pedidos ou tentativas de pagamento com dados inválidos.
+3. A plataforma processa as solicitações e encaminha as tentativas ao Gateway de Pagamento.
+4. O Gateway recebe um volume anormal de transações inválidas ou malsucedidas.
+5. O volume excessivo consome os recursos destinados ao processamento de pagamentos ou aciona mecanismos de proteção e limitação do Gateway.
+6. As tentativas legítimas de pagamento passam a sofrer atrasos, erros ou indisponibilidade.
+7. Clientes legítimos ficam impossibilitados de concluir novos pedidos enquanto a integração estiver degradada.
+
+**Impacto esperado:** degradação ou indisponibilidade do fluxo de pagamentos, impedimento de novos pedidos, perda de receita para a plataforma e estabelecimentos e possível bloqueio temporário da integração pelo Gateway.
+
+**Categorias STRIDE relacionadas:** Denial of Service.
+
+---
+
+### CA22 — Criação automatizada de pedidos para consumir recursos da plataforma
+
+**Ator:** atacante externo ou usuário mal-intencionado.
+
+**Objetivo:** consumir recursos computacionais e operacionais da plataforma por meio da criação automatizada de pedidos, sem intenção de concluir as transações.
+
+**Condições necessárias:**
+
+- a plataforma permite iniciar pedidos sem mecanismos eficazes de limitação de frequência;
+- não existem controles suficientes para identificar padrões automatizados de criação de pedidos;
+- a criação de pedidos gera processamento no backend, consultas ao banco de dados ou notificações aos demais participantes;
+- o atacante consegue automatizar as requisições utilizadas para iniciar os pedidos.
+
+**Fluxo de abuso:**
+
+1. O atacante autentica-se na plataforma utilizando uma conta legítima ou cria uma conta para realizar o abuso.
+2. O atacante identifica as requisições utilizadas para iniciar e registrar novos pedidos.
+3. O atacante automatiza o envio dessas requisições em grande quantidade e em intervalos curtos.
+4. A plataforma processa as solicitações como pedidos legítimos, realizando as operações necessárias no backend e no banco de dados.
+5. Os pedidos criados podem gerar notificações e outras operações associadas ao fluxo normal de pedidos.
+6. O atacante abandona ou cancela os pedidos sem intenção de concluí-los.
+7. O procedimento é repetido continuamente, mantendo um volume artificial de operações e consumindo recursos da plataforma.
+
+**Impacto esperado:** aumento desnecessário do consumo de recursos computacionais e de banco de dados, geração de operações e notificações desnecessárias e possível degradação do desempenho da plataforma para usuários legítimos.
+
+**Categorias STRIDE relacionadas:** Denial of Service.
+
+---
+
+### CA23 — Acesso não autorizado às funções administrativas por falha de controle de privilégios
+
+**Ator:** atacante externo ou usuário autenticado com privilégios insuficientes.
+
+**Objetivo:** acessar funcionalidades administrativas que deveriam estar disponíveis exclusivamente para usuários com perfil de administrador.
+
+**Condições necessárias:**
+
+- a aplicação possui endpoints ou operações administrativas acessíveis por meio da API;
+- a autorização das operações não é verificada adequadamente no servidor;
+- o atacante consegue identificar ou inferir as rotas e parâmetros utilizados pelas funções administrativas.
+
+**Fluxo de abuso:**
+
+1. O atacante autentica-se normalmente na plataforma utilizando uma conta sem privilégios administrativos.
+2. O atacante identifica, por meio da aplicação ou da análise das requisições, endpoints utilizados pelas funcionalidades administrativas.
+3. O atacante envia diretamente uma requisição para um endpoint administrativo, utilizando sua própria sessão autenticada.
+4. A API valida a autenticação do usuário, mas não verifica corretamente se sua conta possui a função ou permissão necessária para executar a operação.
+5. O servidor processa a solicitação como se o usuário possuísse privilégios administrativos.
+6. O atacante passa a acessar informações ou executar operações administrativas disponíveis pela API.
+7. O atacante pode repetir o procedimento para explorar outras funcionalidades administrativas que apresentem a mesma falha de autorização.
+
+**Impacto esperado:** acesso indevido a informações e operações administrativas, possibilidade de alteração de dados ou configurações da plataforma e comprometimento da confiança nos mecanismos de controle de privilégios.
+
+**Categorias STRIDE relacionadas:** Elevation of Privilege.
