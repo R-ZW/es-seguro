@@ -335,3 +335,172 @@
 **Categorias STRIDE relacionadas:** Information Disclosure.
 
 ---
+
+### CA13 — Vazamento de dados pessoais por acesso indevido à API
+
+**Ator:** atacante externo ou usuário autenticado mal-intencionado.
+
+**Objetivo:** obter dados pessoais de clientes, entregadores ou estabelecimentos que não deveriam estar disponíveis ao atacante.
+
+**Condições necessárias:**
+
+- a API disponibiliza dados pessoais para diferentes funcionalidades do sistema;
+- determinados endpoints não verificam adequadamente a autorização do usuário para acessar os dados solicitados;
+- o atacante consegue identificar ou inferir identificadores de usuários ou outros recursos existentes na plataforma.
+
+**Fluxo de abuso:**
+
+1. O atacante autentica-se na plataforma ou identifica endpoints que permitem consultar dados por meio da API.
+2. O atacante identifica ou obtém o identificador de um usuário ou recurso que não lhe pertence.
+3. O atacante envia uma requisição à API utilizando o identificador obtido.
+4. A API autentica o solicitante, mas não verifica adequadamente se ele possui autorização para consultar os dados associados ao recurso.
+5. O servidor retorna informações pessoais pertencentes ao usuário consultado.
+6. O atacante repete as consultas utilizando diferentes identificadores para obter dados de outros usuários.
+7. Caso a API permita consultas automatizadas, o atacante pode ampliar a coleta e obter uma quantidade significativa de registros.
+
+**Impacto esperado:** exposição indevida de dados pessoais, violação da privacidade de clientes, entregadores ou estabelecimentos e possibilidade de utilização das informações obtidas em ataques posteriores, como phishing ou engenharia social.
+
+**Categorias STRIDE relacionadas:** Information Disclosure.
+
+---
+
+### CA14 — Exposição de informações financeiras por acesso indevido ao histórico de transações
+
+**Ator:** atacante externo ou usuário autenticado mal-intencionado.
+
+**Objetivo:** obter informações financeiras e transacionais pertencentes a outro usuário ou estabelecimento.
+
+**Condições necessárias:**
+
+- a plataforma disponibiliza histórico de pedidos, pagamentos, estornos ou repasses por meio da API;
+- a API não verifica adequadamente se o solicitante possui autorização para acessar o histórico consultado;
+- o atacante consegue identificar ou inferir identificadores de usuários, pedidos ou transações.
+
+**Fluxo de abuso:**
+
+1. O atacante autentica-se na plataforma utilizando uma conta legítima ou obtém acesso a um endpoint de consulta do histórico de transações.
+2. O atacante identifica o identificador de uma conta, pedido ou transação que não lhe pertence.
+3. O atacante envia uma requisição à API utilizando o identificador obtido.
+4. A API verifica a identidade do solicitante, mas não valida adequadamente sua autorização para acessar o histórico solicitado.
+5. O servidor retorna informações financeiras relacionadas às transações do usuário ou estabelecimento.
+6. O atacante repete as consultas para obter informações de outras contas ou transações.
+7. As informações obtidas podem ser armazenadas ou utilizadas para identificar padrões de consumo, valores movimentados ou outras informações financeiras dos usuários.
+
+**Impacto esperado:** exposição de informações financeiras e transacionais, violação da privacidade dos usuários e estabelecimentos e possibilidade de utilização das informações obtidas em ataques posteriores ou fraudes direcionadas.
+
+**Categorias STRIDE relacionadas:** Information Disclosure.
+
+---
+
+### CA15 — Utilização indevida de dados de localização para rastrear entregadores fora de uma entrega autorizada
+
+**Ator:** atacante externo ou usuário autenticado mal-intencionado.
+
+**Objetivo:** acompanhar a localização de um entregador mesmo quando não existe uma relação legítima com o pedido ou com a entrega em andamento.
+
+**Condições necessárias:**
+
+- a plataforma disponibiliza dados de localização do entregador durante o acompanhamento das entregas;
+- os dados de localização permanecem acessíveis após o encerramento ou alteração da relação entre usuário e entrega;
+- a API não verifica adequadamente se o solicitante ainda possui autorização para consultar a localização;
+- o atacante consegue identificar o entregador ou o recurso utilizado para consultar sua localização.
+
+**Fluxo de abuso:**
+
+1. O atacante obtém acesso a uma conta legítima da plataforma ou identifica um mecanismo de consulta de localização.
+2. O atacante identifica o identificador de um pedido ou entregador cuja localização deseja acompanhar.
+3. Após a entrega ser encerrada, cancelada ou deixar de estar associada ao atacante, ele envia novas requisições à API para consultar a localização.
+4. A API retorna as coordenadas sem verificar adequadamente se ainda existe uma relação autorizada entre o solicitante e o entregador.
+5. O atacante realiza consultas sucessivas para obter novas posições do entregador.
+6. A partir das coordenadas obtidas, o atacante consegue acompanhar o deslocamento do entregador mesmo fora do contexto da entrega original.
+
+**Impacto esperado:** violação da privacidade do entregador, exposição de seus deslocamentos e rotinas e possível risco à sua segurança pessoal.
+
+**Categorias STRIDE relacionadas:** Information Disclosure.
+
+---
+
+### CA16 — Tentativas automatizadas de cupons para descobrir códigos válidos
+
+**Ator:** atacante externo ou cliente mal-intencionado.
+
+**Objetivo:** identificar códigos de cupons válidos por meio de tentativas automatizadas e utilizá-los para obter descontos indevidos.
+
+**Condições necessárias:**
+
+- a plataforma permite que usuários submetam códigos de cupom para validação;
+- a API fornece respostas diferentes dependendo da existência ou validade do código informado;
+- não existe limitação adequada para o número de tentativas de validação realizadas por uma conta ou endereço de origem;
+- os códigos de cupom possuem formato ou espaço de possibilidades que permite tentativas automatizadas.
+
+**Fluxo de abuso:**
+
+1. O atacante identifica a funcionalidade da plataforma responsável pela validação de cupons.
+2. O atacante analisa as respostas retornadas pela API para códigos válidos, inválidos, expirados ou inexistentes.
+3. O atacante automatiza o envio de diferentes combinações de códigos de cupom.
+4. A API processa as tentativas sem aplicar uma limitação adequada à quantidade de consultas.
+5. O atacante identifica os códigos que produzem uma resposta indicando que o cupom é válido.
+6. O atacante utiliza os códigos descobertos em pedidos próprios ou os compartilha com outros usuários.
+7. Caso os cupons possuam limitações de utilização que também possam ser contornadas, o atacante pode repetir o abuso em múltiplos pedidos.
+
+**Impacto esperado:** utilização indevida de campanhas promocionais, concessão de descontos não planejados e prejuízo financeiro limitado à plataforma ou aos estabelecimentos participantes.
+
+**Categorias STRIDE relacionadas:** Information Disclosure, Denial of Service.
+
+---
+
+### CA17 — Enumeração de usuários por respostas diferentes da API
+
+**Ator:** atacante externo.
+
+**Objetivo:** identificar quais usuários possuem contas cadastradas na plataforma para obter uma base de contas válidas.
+
+**Condições necessárias:**
+
+- a API possui funcionalidades que recebem identificadores como e-mail, telefone ou nome de usuário;
+- a API retorna respostas diferentes para identificadores cadastrados e não cadastrados;
+- não existe mecanismo adequado para impedir ou limitar consultas automatizadas;
+- o atacante consegue realizar várias consultas à funcionalidade vulnerável.
+
+**Fluxo de abuso:**
+
+1. O atacante identifica uma funcionalidade da plataforma que permite consultar ou validar a existência de usuários.
+2. O atacante envia uma requisição utilizando um e-mail, telefone ou outro identificador de possível usuário.
+3. A API retorna uma resposta que permite distinguir entre um usuário existente e um usuário inexistente.
+4. O atacante registra o resultado da consulta e envia uma nova requisição utilizando outro identificador.
+5. O procedimento é automatizado para consultar uma grande quantidade de identificadores.
+6. O atacante constrói uma lista de usuários potencialmente cadastrados na plataforma.
+7. A lista obtida pode ser utilizada posteriormente para ataques direcionados, como tentativas de comprometimento de contas, phishing ou engenharia social.
+
+**Impacto esperado:** exposição indireta da existência de contas de usuários, violação de privacidade e fornecimento de informações que podem facilitar ataques posteriores direcionados.
+
+**Categorias STRIDE relacionadas:** Information Disclosure.
+
+---
+
+### CA18 — Bloqueio de contas legítimas por abuso do mecanismo de autenticação
+
+**Ator:** atacante externo.
+
+**Objetivo:** impedir que usuários legítimos acessem suas contas por meio da exploração do mecanismo automático de bloqueio após tentativas consecutivas de autenticação.
+
+**Condições necessárias:**
+
+- o sistema bloqueia temporariamente uma conta após determinado número de tentativas de autenticação malsucedidas;
+- o mecanismo de bloqueio pode ser acionado por terceiros sem exigir uma prova adicional de controle da conta;
+- não existe proteção adequada contra tentativas automatizadas de autenticação.
+
+**Fluxo de abuso:**
+
+1. O atacante identifica o identificador de uma conta legítima da plataforma.
+2. O atacante envia repetidamente tentativas de autenticação inválidas para essa conta.
+3. O sistema contabiliza as tentativas como falhas legítimas de autenticação.
+4. Após atingir o limite configurado, o mecanismo de proteção bloqueia temporariamente a conta.
+5. O usuário legítimo tenta acessar sua conta e não consegue realizar a autenticação devido ao bloqueio.
+6. O atacante repete o procedimento sempre que a conta é desbloqueada, mantendo o acesso do usuário legítimo indisponível.
+
+**Impacto esperado:** indisponibilidade temporária de contas legítimas, impedimento de realização ou acompanhamento de pedidos e transtornos aos usuários afetados, sem necessariamente resultar em comprometimento das contas.
+
+**Categorias STRIDE relacionadas:** Denial of Service.
+
+---
