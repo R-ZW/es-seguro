@@ -139,3 +139,199 @@
 **Categorias STRIDE relacionadas:** Tampering, Repudiation, Elevation of Privilege.
 
 ---
+
+### CA06 — Uso indevido de cupons por manipulação das regras de desconto
+
+**Ator:** cliente mal-intencionado ou atacante externo.
+
+**Objetivo:** obter descontos superiores aos permitidos ou utilizar repetidamente cupons que deveriam possuir restrições de uso.
+
+**Condições necessárias:**
+
+- a aplicação permite que o cliente informe ou manipule os dados utilizados para aplicação de um cupom;
+- a API não valida adequadamente as condições de uso do cupom no servidor;
+- restrições como quantidade máxima de utilizações, validade, percentual de desconto ou associação à conta podem ser alteradas ou contornadas pelo atacante.
+
+**Fluxo de abuso:**
+
+1. O atacante identifica um cupom disponível na plataforma e analisa as informações utilizadas pelo aplicativo para solicitar sua aplicação.
+2. O atacante intercepta a requisição enviada à API durante a aplicação do cupom.
+3. O atacante modifica parâmetros da requisição, como o código do cupom, percentual de desconto ou informações utilizadas para verificar sua utilização.
+4. A API recebe os dados manipulados e não realiza uma validação completa das regras do cupom no servidor.
+5. O sistema aplica um desconto superior ao permitido ou aceita um cupom que já deveria estar expirado ou esgotado.
+6. O atacante finaliza o pedido utilizando o valor indevidamente reduzido.
+7. O procedimento pode ser repetido em novos pedidos caso a vulnerabilidade permita contornar as limitações de utilização.
+
+**Impacto esperado:** prejuízo financeiro para a plataforma e para os estabelecimentos, utilização indevida de campanhas promocionais e aumento artificial dos descontos concedidos.
+
+**Categorias STRIDE relacionadas:** Tampering.
+
+---
+
+### CA07 — Manipulação da localização do entregador para fraudar o acompanhamento da entrega
+
+**Ator:** entregador mal-intencionado.
+
+**Objetivo:** transmitir uma localização falsa para ocultar atrasos, desvios de rota ou outras irregularidades durante uma entrega.
+
+**Condições necessárias:**
+
+- o aplicativo utiliza a localização fornecida pelo dispositivo do entregador para atualizar sua posição na plataforma;
+- o sistema não possui mecanismos suficientes para detectar ou validar coordenadas incompatíveis com o deslocamento esperado;
+- o entregador consegue utilizar recursos de falsificação de localização disponíveis no dispositivo.
+
+**Fluxo de abuso:**
+
+1. O entregador aceita um pedido e inicia normalmente o processo de entrega.
+2. O entregador utiliza um mecanismo de falsificação de localização no dispositivo para fornecer coordenadas diferentes de sua posição real.
+3. O aplicativo transmite as coordenadas adulteradas para a plataforma.
+4. O servidor registra a localização recebida sem identificar que os dados foram manipulados.
+5. O cliente e a plataforma visualizam uma posição diferente da localização real do entregador.
+6. O entregador utiliza a localização falsificada para ocultar atrasos, desvios ou permanência em outro local durante a entrega.
+7. Caso necessário, o entregador retorna à rota real antes de concluir a entrega, reduzindo a possibilidade de o desvio ser percebido pelo acompanhamento convencional.
+
+**Impacto esperado:** informações incorretas sobre o andamento das entregas, dificuldade de fiscalização do serviço, possibilidade de ocultação de atrasos ou desvios e redução da confiabilidade do mecanismo de rastreamento.
+
+**Categorias STRIDE relacionadas:** Tampering, Repudiation.
+
+---
+
+### CA08 — Interceptação ou falsificação de notificações de alteração de status do pedido
+
+**Ator:** atacante externo.
+
+**Objetivo:** induzir usuários ou componentes da plataforma a acreditar que um pedido atingiu um estado diferente do seu estado real.
+
+**Condições necessárias:**
+
+- a plataforma utiliza notificações para informar alterações no estado dos pedidos;
+- as notificações não possuem mecanismos suficientes para garantir sua autenticidade e integridade;
+- o atacante consegue interceptar, reproduzir ou enviar mensagens que sejam aceitas como notificações legítimas;
+- usuários ou componentes consumidores confiam no conteúdo das notificações para tomar decisões.
+
+**Fluxo de abuso:**
+
+1. O atacante identifica o mecanismo utilizado pela plataforma para transmitir notificações de alteração de status.
+2. O atacante intercepta uma notificação legítima ou obtém informações suficientes para reproduzir o formato esperado pelo sistema.
+3. O atacante modifica o conteúdo da mensagem ou cria uma nova notificação indicando um estado diferente do estado real do pedido.
+4. A mensagem adulterada é encaminhada ao usuário ou componente responsável pelo processamento da notificação.
+5. O destinatário aceita a mensagem como legítima por não conseguir verificar adequadamente sua autenticidade ou integridade.
+6. O cliente, estabelecimento ou outro componente passa a considerar o pedido como estando no estado informado na mensagem falsa.
+7. O atacante utiliza a informação adulterada para induzir decisões incorretas, como acreditar que um pedido foi entregue, cancelado ou teve seu pagamento confirmado.
+
+**Impacto esperado:** desinformação sobre o estado dos pedidos, decisões incorretas por usuários ou componentes do sistema, disputas sobre operações realizadas e possibilidade de utilização da notificação falsificada como etapa de ataques posteriores.
+
+**Categorias STRIDE relacionadas:** Tampering, Spoofing.
+
+---
+
+### CA09 — Manipulação das avaliações para prejudicar a reputação de um estabelecimento ou entregador
+
+**Ator:** usuário mal-intencionado ou atacante com acesso à API.
+
+**Objetivo:** alterar, inserir ou remover avaliações para prejudicar artificialmente a reputação de um estabelecimento ou entregador.
+
+**Condições necessárias:**
+
+- as avaliações são armazenadas e gerenciadas por meio da API;
+- a API não verifica adequadamente a identidade do autor ou sua relação com o pedido avaliado;
+- o atacante consegue modificar os dados enviados na requisição ou acessar avaliações de terceiros;
+- não existem mecanismos suficientes para impedir alterações ou avaliações incompatíveis com os pedidos realizados.
+
+**Fluxo de abuso:**
+
+1. O atacante identifica a funcionalidade utilizada para registrar ou consultar avaliações.
+2. O atacante analisa as requisições enviadas pela aplicação durante o registro de uma avaliação.
+3. O atacante modifica os parâmetros da requisição, como o identificador do pedido, do estabelecimento, do entregador ou o conteúdo da avaliação.
+4. A API recebe os dados manipulados sem verificar adequadamente se o atacante está autorizado a avaliar ou alterar aquele registro.
+5. O sistema registra a avaliação ou alteração como se fosse uma operação legítima.
+6. O atacante repete o procedimento para inserir múltiplas avaliações ou alterar avaliações existentes.
+7. A reputação do estabelecimento ou entregador é alterada artificialmente nas informações apresentadas aos demais usuários.
+
+**Impacto esperado:** dano à reputação de estabelecimentos ou entregadores, distorção das avaliações apresentadas aos usuários e possível perda de clientes ou oportunidades de trabalho.
+
+**Categorias STRIDE relacionadas:** Tampering, Repudiation.
+
+---
+
+### CA10 — Manipulação de registros de auditoria para ocultar uma operação fraudulenta
+
+**Ator:** atacante que obteve acesso indevido a componentes internos ou usuário privilegiado mal-intencionado.
+
+**Objetivo:** alterar ou remover registros de auditoria para dificultar a identificação de uma operação fraudulenta.
+
+**Condições necessárias:**
+
+- os registros de auditoria podem ser acessados ou modificados pelo componente ou usuário que realizou a operação;
+- não existe proteção adequada contra alteração ou exclusão dos registros após sua criação;
+- os registros de auditoria são utilizados como evidência das operações realizadas na plataforma.
+
+**Fluxo de abuso:**
+
+1. O atacante obtém acesso a uma conta ou componente com permissão suficiente para executar uma operação fraudulenta.
+2. O atacante realiza uma operação sensível, como alteração de dados, cancelamento ou movimentação relacionada a um pedido.
+3. A plataforma registra a operação nos mecanismos de auditoria.
+4. O atacante identifica os registros relacionados à operação realizada.
+5. O atacante altera ou remove os registros que poderiam associar a operação à sua identidade ou ao momento em que ela foi executada.
+6. Uma investigação posterior consulta os registros de auditoria e não encontra evidências suficientes da operação original.
+7. O atacante utiliza a ausência ou adulteração dos registros para dificultar a identificação da origem da fraude e eventual responsabilização.
+
+**Impacto esperado:** perda de confiabilidade dos registros de auditoria, dificuldade de investigação de incidentes, comprometimento da capacidade de responsabilização dos envolvidos e possibilidade de ocultação de operações fraudulentas.
+
+**Categorias STRIDE relacionadas:** Repudiation, Tampering.
+
+---
+
+### CA11 — Acesso indevido às informações da conta de outro usuário por falha de autorização
+
+**Ator:** cliente autenticado ou atacante externo com uma conta válida na plataforma.
+
+**Objetivo:** acessar informações ou operações pertencentes a outro usuário, explorando uma falha no controle de autorização da API.
+
+**Condições necessárias:**
+
+- a API utiliza identificadores de usuários, pedidos ou outros recursos fornecidos nas requisições;
+- o servidor não verifica adequadamente se o recurso solicitado pertence ao usuário autenticado;
+- o atacante consegue obter ou inferir o identificador de outro usuário ou pedido.
+
+**Fluxo de abuso:**
+
+1. O atacante autentica-se normalmente na plataforma utilizando sua própria conta.
+2. O atacante identifica ou obtém o identificador de um pedido ou recurso pertencente a outro usuário.
+3. O atacante envia uma requisição à API substituindo o identificador de seu próprio recurso pelo identificador da vítima.
+4. A API autentica o atacante, mas não verifica corretamente se ele possui autorização para acessar o recurso solicitado.
+5. O sistema retorna informações pertencentes ao outro usuário ou permite a execução de uma operação sobre o recurso.
+6. O atacante repete o procedimento para consultar outros recursos, caso os identificadores sejam previsíveis ou possam ser obtidos sucessivamente.
+
+**Impacto esperado:** exposição de dados pessoais e informações de pedidos de terceiros, possibilidade de alteração indevida de recursos e violação do isolamento entre contas de usuários.
+
+**Categorias STRIDE relacionadas:** Information Disclosure, Elevation of Privilege.
+
+---
+
+### CA12 — Exposição de endereço e localização de usuários por acesso indevido aos dados de entrega
+
+**Ator:** atacante externo ou usuário autenticado mal-intencionado.
+
+**Objetivo:** obter informações de localização de clientes ou entregadores às quais não deveria possuir acesso.
+
+**Condições necessárias:**
+
+- a API disponibiliza endereço de entrega ou localização do entregador para funcionalidades relacionadas aos pedidos;
+- o servidor não verifica adequadamente se o usuário possui autorização para acessar essas informações;
+- o atacante consegue identificar ou consultar pedidos ou recursos de outros usuários.
+
+**Fluxo de abuso:**
+
+1. O atacante autentica-se na plataforma ou obtém acesso a uma interface que permite consultar dados de pedidos.
+2. O atacante identifica o identificador de um pedido que não lhe pertence.
+3. O atacante envia uma requisição à API solicitando os dados associados ao pedido.
+4. A API retorna informações de endereço, localização ou outros dados de entrega sem verificar adequadamente a autorização do solicitante.
+5. O atacante utiliza as informações obtidas para identificar o endereço de um cliente ou acompanhar a localização de um entregador.
+6. Caso a localização seja atualizada continuamente, o atacante pode realizar novas consultas para acompanhar o deslocamento do entregador durante a entrega.
+
+**Impacto esperado:** violação da privacidade de clientes e entregadores, exposição indevida de endereços e localização em tempo real e possível risco à segurança física das pessoas envolvidas.
+
+**Categorias STRIDE relacionadas:** Information Disclosure.
+
+---
