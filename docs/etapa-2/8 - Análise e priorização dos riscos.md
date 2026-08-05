@@ -57,6 +57,13 @@ A pontuação permite estabelecer uma comparação e uma ordem de prioridade ent
 | R04 | Tampering | O valor final de um pedido é reduzido ou alterado indevidamente durante a finalização da compra | Backend confia em valores enviados pelo cliente e não recalcula ou valida adequadamente os valores do pedido | 2 | 4 | 8 | Alto |
 | R05 | Tampering / Elevation of Privilege | Uma coleta ou entrega é falsamente confirmada e um repasse é liberado indevidamente | Validação insuficiente da Chave de Coleta/Entrega e possibilidade de acionar etapas do fluxo sem comprovação adequada | 2 | 4 | 8 | Alto |
 | R06 | Tampering | Um atacante manipula regras de aplicação de cupons para obter descontos superiores aos permitidos | Validação insuficiente das regras de cupom no backend e confiança em parâmetros enviados pelo cliente | 4 | 2 | 8 | Alto |
+| R07 | Tampering | A localização transmitida pelo entregador é adulterada para apresentar uma posição diferente da real | O sistema confia nas coordenadas fornecidas pelo dispositivo sem mecanismos suficientes para detectar localização falsificada | 2 | 1 | 2 | Baixo |
+| R08 | Tampering / Spoofing | Usuários ou componentes recebem notificações falsas sobre o estado de um pedido | Notificações não possuem mecanismos suficientes de autenticação e integridade | 2 | 1 | 2 | Baixo |
+| R09 | Tampering | Avaliações de estabelecimentos ou entregadores são alteradas ou inseridas indevidamente para prejudicar sua reputação | API não verifica adequadamente a identidade do autor, sua relação com o pedido ou a integridade dos registros | 3 | 2 | 6 | Médio |
+| R10 | Repudiation / Tampering | Registros de auditoria são alterados ou removidos para ocultar uma operação fraudulenta | Logs podem ser modificados ou excluídos por usuários ou componentes envolvidos na própria operação | 2 | 4 | 8 | Alto |
+| R11 | Information Disclosure | Um usuário tem acesso a informação da conta e pedidos pertencentes a outro usuário | Falha de autorização na API e ausência de validação da propriedade do recurso solicitado | 3 | 4 | 12 | Crítico |
+| R12 | Information Disclosure | Endereços ou informações de localização de clientes e entregadores são acessados por usuários não autorizados | Falha de autorização nos dados de entrega e localização disponibilizados pela API | 3 | 4 | 12 | Crítico |
+| R13 | Information Disclosure | Dados pessoais de clientes, entregadores ou estabelecimentos são obtidos indevidamente por meio da API | Falhas de autorização, configuração ou proteção dos endpoints que disponibilizam dados pessoais | 3 | 4 | 12 | Crítico |
 
 
 ### 8.5 Justificativas
@@ -96,3 +103,45 @@ A pontuação permite estabelecer uma comparação e uma ordem de prioridade ent
 **Probabilidade:** Alta. A aplicação de cupons é uma funcionalidade acessível aos clientes e pode ser explorada caso a API não valide corretamente as regras de utilização.
 
 **Impacto:** Moderado. O prejuízo tende a ficar limitado aos descontos concedidos indevidamente, embora a exploração repetida possa aumentar as perdas financeiras.
+
+#### R07 — Manipulação da localização do entregador
+
+**Probabilidade:** Média-baixa. Ferramentas de falsificação de localização podem ser utilizadas por um entregador com acesso ao próprio dispositivo, não exigindo necessariamente o comprometimento da infraestrutura da plataforma.
+
+**Impacto:** Baixo. A manipulação prejudica a confiabilidade do acompanhamento e pode ocultar atrasos ou desvios, mas normalmente não compromete diretamente informações críticas ou valores financeiros.
+
+#### R08 — Falsificação de notificações de pedido
+
+**Probabilidade:** Média-baixa. A exploração depende da possibilidade de interceptar ou reproduzir mensagens aceitas como notificações legítimas, além de uma proteção insuficiente de sua autenticidade ou integridade.
+
+**Impacto:** Baixo. A falsificação pode induzir usuários ou componentes a tomar decisões incorretas sobre pedidos, mas normalmente depende de outras condições para produzir um prejuízo mais grave.
+
+#### R09 — Manipulação das avaliações
+
+**Probabilidade:** Média-alta. A exploração pode ocorrer caso a API não valide corretamente a relação entre usuário, pedido e avaliação, permitindo que requisições sejam manipuladas.
+
+**Impacto:** Moderado. O principal efeito é a distorção da reputação de estabelecimentos ou entregadores e a apresentação de informações falsas aos demais clientes, sem necessariamente comprometer diretamente operações críticas.
+
+#### R10 — Manipulação dos registros de auditoria
+
+**Probabilidade:** Média-baixa. O abuso depende de o atacante obter acesso suficiente para modificar ou remover registros de auditoria, o que normalmente exige comprometimento prévio de uma conta ou componente privilegiado.
+
+**Impacto:** Muito alto. A alteração das evidências pode dificultar a investigação de fraudes, impedir a responsabilização dos envolvidos e comprometer a confiabilidade dos mecanismos de auditoria.
+
+#### R11 — Acesso a informações da conta e pedidos de outro usuário
+
+**Probabilidade:** Média-alta. Falhas de autorização em APIs são plausíveis quando o servidor autentica o usuário, mas não verifica corretamente se ele possui acesso ao recurso solicitado.
+
+**Impacto:** Muito alto. O atacante pode obter dados pessoais, informações de pedidos e potencialmente executar operações em recursos pertencentes a terceiros.
+
+#### R12 — Exposição de endereços e informações de localização
+
+**Probabilidade:** Média-alta. Os dados de localização e entrega são utilizados por funcionalidades normais do sistema, e uma falha de autorização pode permitir que usuários consultem recursos pertencentes a terceiros. A localização e os endereços são ativos explicitamente relevantes no sistema.
+
+**Impacto:** Muito alto. A exposição pode revelar endereços residenciais e trajetos em tempo real, afetando a privacidade e podendo representar risco à segurança física de clientes e entregadores.
+
+#### R13 — Vazamento de dados pessoais
+
+**Probabilidade:** Média-alta. APIs que disponibilizam dados cadastrais podem apresentar falhas de autorização ou configuração capazes de permitir consultas indevidas.
+
+**Impacto:** Muito alto. A exposição pode atingir dados pessoais de clientes, entregadores e estabelecimentos em quantidade significativa, além de gerar consequências legais e reputacionais.
