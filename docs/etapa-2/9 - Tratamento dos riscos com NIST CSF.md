@@ -57,3 +57,32 @@ A aceitação de um risco não implica que ele será simplesmente ignorado. É n
 | **R21 — Criação automatizada de pedidos**                          | Alto          | **Reduzir**                | A criação de pedidos é uma função essencial da plataforma, mas sua utilização deve possuir limites e mecanismos de detecção capazes de diferenciar o comportamento legítimo de automações abusivas.                          |
 | **R22 — Abuso de conta administrativa comprometida**               | Alto          | **Reduzir**                | Contas administrativas são necessárias para a operação do sistema, mas seu uso deve ser protegido por autenticação reforçada, menor privilégio possível e monitoramento das operações sensíveis.                             |
 | **R23 — Acesso não autorizado às funções administrativas**         | Alto          | **Reduzir**                | As funções administrativas são necessárias para operar a plataforma, mas devem possuir controle rigoroso de privilégios, autenticação reforçada e monitoramento das operações realizadas.                                    |
+
+
+### 9.3 Mapeamento dos riscos para as funções do NIST CSF
+
+| Risco                                                          | Govern | Identify | Protect | Detect | Respond | Recover |
+| -------------------------------------------------------------- | ------ | -------- | ------- | ------ | ------- | ------- |
+| R01 — Uso indevido da conta de um cliente                      | X      | X        | X       | X      | X       | X       |
+| R02 — Alteração dos dados de recebimento                       | X      | X        | X       | X      | X       | X       |
+| R03 — Cadastro fraudulento de estabelecimento ou entregador    | X      | X        | X       | X      | X       |         |
+| R04 — Manipulação do valor do pedido                           | X      | X        | X       | X      | X       | X       |
+| R05 — Liberação indevida de repasse                            | X      | X        | X       | X      | X       |         |
+| R06 — Uso indevido de cupons                                   | X      | X        | X       | X      | X       | X       |
+| R07 — Manipulação da localização do entregador                 | X      | X        | X       | X      | X       |         |
+| R08 — Falsificação de notificações de pedido                   | X      | X        | X       | X      | X       | X       |
+| R09 — Manipulação das avaliações                               | X      | X        | X       | X      | X       | X       |
+| R10 — Manipulação de registros de auditoria                    | X      | X        | X       | X      | X       | X       |
+| R11 — Acesso a informações da conta e pedidos de outro usuário | X      | X        | X       | X      | X       | X       |
+| R12 — Exposição de endereços e informações de localização      | X      | X        | X       | X      | X       | X       |
+| R13 — Vazamento de dados pessoais pela API                     | X      | X        | X       | X      | X       | X       |
+| R14 — Vazamento de informações financeiras                     | X      | X        | X       | X      | X       | X       |
+| R15 — Rastreamento indevido de entregadores                    | X      | X        | X       | X      | X       |         |
+| R16 — Descoberta automatizada de cupons                        | X      | X        | X       | X      | X       |         |
+| R17 — Enumeração de usuários                                   | X      | X        | X       | X      | X       |         |
+| R18 — Bloqueio de contas legítimas                             | X      | X        | X       | X      | X       | X       |
+| R19 — Indisponibilidade da plataforma por sobrecarga           | X      | X        | X       | X      | X       | X       |
+| R20 — Saturação do fluxo de pagamentos                         | X      | X        | X       | X      | X       | X       |
+| R21 — Criação automatizada de pedidos                          | X      | X        | X       | X      | X       | X       |
+| R22 — Abuso de conta administrativa comprometida               | X      | X        | X       | X      | X       |         |
+| R23 — Acesso não autorizado às funções administrativas         | X      | X        | X       | X      | X       |         |
