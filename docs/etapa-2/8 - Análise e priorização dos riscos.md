@@ -64,6 +64,13 @@ A pontuação permite estabelecer uma comparação e uma ordem de prioridade ent
 | R11 | Information Disclosure | Um usuário tem acesso a informação da conta e pedidos pertencentes a outro usuário | Falha de autorização na API e ausência de validação da propriedade do recurso solicitado | 3 | 4 | 12 | Crítico |
 | R12 | Information Disclosure | Endereços ou informações de localização de clientes e entregadores são acessados por usuários não autorizados | Falha de autorização nos dados de entrega e localização disponibilizados pela API | 3 | 4 | 12 | Crítico |
 | R13 | Information Disclosure | Dados pessoais de clientes, entregadores ou estabelecimentos são obtidos indevidamente por meio da API | Falhas de autorização, configuração ou proteção dos endpoints que disponibilizam dados pessoais | 3 | 4 | 12 | Crítico |
+| R14 | Information Disclosure | Informações financeiras e transacionais de outros usuários ou estabelecimentos são acessadas indevidamente | Falha de autorização no acesso ao histórico de transações ou proteção insuficiente dos dados financeiros | 2 | 4 | 8 | Alto |
+| R15 | Information Disclosure | Dados de localização de entregadores continuam acessíveis após o encerramento da relação autorizada com uma entrega | Falha no controle de acesso e no ciclo de vida das permissões de consulta à localização | 2 | 3 | 6 | Médio |
+| R16 | Information Disclosure / Denial of Service | Um atacante descobre cupons válidos por meio de tentativas automatizadas de validação | Respostas diferenciadas da API e ausência de limitação adequada para tentativas de consulta de cupons | 4 | 1 | 4 | Médio |
+| R17 | Information Disclosure | Um atacante identifica quais usuários possuem contas cadastradas na plataforma | Respostas diferentes da API para usuários existentes e inexistentes permitem a enumeração de contas | 4 | 1 | 4 | Médio |
+| R18 | Denial of Service | Contas de usuários legítimos são bloqueadas por tentativas deliberadas de autenticação malsucedida | Mecanismo de bloqueio acionável por terceiros e ausência de proteção adequada contra tentativas automatizadas | 2 | 2 | 4 | Médio |
+| R19 | Denial of Service | A plataforma sofre degradação ou indisponibilidade devido a um volume deliberado de requisições | Ausência de rate limiting eficaz, detecção insuficiente de tráfego anômalo e capacidade limitada de absorção de picos | 4 | 4 | 16 | Crítico |
+| R20 | Denial of Service | O fluxo de pagamentos fica indisponível devido a um grande volume de transações inválidas automatizadas | Ausência de limitação de tentativas e mecanismos de detecção de comportamento anômalo na integração com o Gateway | 2 | 4 | 8 | Alto |
 
 
 ### 8.5 Justificativas
@@ -145,3 +152,46 @@ A pontuação permite estabelecer uma comparação e uma ordem de prioridade ent
 **Probabilidade:** Média-alta. APIs que disponibilizam dados cadastrais podem apresentar falhas de autorização ou configuração capazes de permitir consultas indevidas.
 
 **Impacto:** Muito alto. A exposição pode atingir dados pessoais de clientes, entregadores e estabelecimentos em quantidade significativa, além de gerar consequências legais e reputacionais.
+
+#### R14 — Vazamento de informações financeiras
+
+**Probabilidade:** Média-baixa. O acesso depende de uma falha específica na autorização, proteção dos históricos de transações ou configuração do gateway de pagamento.
+
+**Impacto:** Muito alto. Informações financeiras podem ser utilizadas para fraudes e ataques direcionados, além de representarem dados sensíveis cuja exposição pode gerar prejuízos relevantes à plataforma e aos usuários.
+
+
+#### R15 — Rastreamento indevido de entregadores
+
+**Probabilidade:** Média-baixa. A exploração depende da permanência indevida das permissões de acesso à localização após o encerramento ou alteração da relação com a entrega.
+
+**Impacto:** Alto. O acesso prolongado pode expor os deslocamentos e padrões de rotina do entregador, representando uma violação relevante de privacidade e potencial risco à sua segurança.
+
+#### R16 — Descoberta automatizada de cupons
+
+**Probabilidade:** Alta. A exploração pode ser automatizada e exige apenas que a API forneça respostas distinguíveis para códigos válidos e inválidos e não limite adequadamente as tentativas.
+
+**Impacto:** Baixo. O principal prejuízo é a descoberta e utilização indevida de códigos promocionais, normalmente resultando em descontos não planejados de valor limitado.
+
+#### R17 — Enumeração de usuários
+
+**Probabilidade:** Alta. Caso a API retorne respostas diferentes para usuários existentes e inexistentes, a enumeração pode ser realizada automaticamente com baixo esforço técnico.
+
+**Impacto:** Baixo. A informação obtida isoladamente possui valor limitado, pois revela principalmente a existência de uma conta. Entretanto, ela pode facilitar ataques posteriores, como phishing e tentativas direcionadas de comprometimento.
+
+#### R18 — Bloqueio de contas legítimas
+
+**Probabilidade:** Média-baixa. O ataque pode ser realizado por meio de repetidas tentativas de autenticação e depende de um comportamento previsível do mecanismo de bloqueio automático.
+
+**Impacto:** Moderado. O usuário legítimo pode ficar temporariamente impedido de acessar sua conta e acompanhar ou realizar pedidos, mas o bloqueio pode ser revertido após o período de proteção.
+
+#### R19 — Indisponibilidade da plataforma por sobrecarga
+
+**Probabilidade:** Alta. Pois em determinados períodos (horário de almoço e jantar) o aumento de acessos é significativo e também pode ser alvo de atacantes com tráfego malicioso.
+
+**Impacto:** Muito alto. A indisponibilidade durante horários de pico pode impedir pedidos e pagamentos, afetando simultaneamente clientes, estabelecimentos e a própria plataforma. A disponibilidade é considerada um ativo crítico justamente nesses períodos.
+
+#### R20 — Saturação do fluxo de pagamentos
+
+**Probabilidade:** Média-baixa. O ataque exige a geração automatizada de um volume suficiente de transações inválidas para provocar limitação ou bloqueio por parte do Gateway de Pagamento.
+
+**Impacto:** Muito alto. Caso a integração seja limitada ou bloqueada, clientes legítimos podem ficar temporariamente impossibilitados de concluir pagamentos e, consequentemente, de realizar novos pedidos.
