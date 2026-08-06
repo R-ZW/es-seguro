@@ -71,7 +71,9 @@ A pontuação permite estabelecer uma comparação e uma ordem de prioridade ent
 | R18 | Denial of Service | Contas de usuários legítimos são bloqueadas por tentativas deliberadas de autenticação malsucedida | Mecanismo de bloqueio acionável por terceiros e ausência de proteção adequada contra tentativas automatizadas | 2 | 2 | 4 | Médio |
 | R19 | Denial of Service | A plataforma sofre degradação ou indisponibilidade devido a um volume deliberado de requisições | Ausência de rate limiting eficaz, detecção insuficiente de tráfego anômalo e capacidade limitada de absorção de picos | 4 | 4 | 16 | Crítico |
 | R20 | Denial of Service | O fluxo de pagamentos fica indisponível devido a um grande volume de transações inválidas automatizadas | Ausência de limitação de tentativas e mecanismos de detecção de comportamento anômalo na integração com o Gateway | 2 | 4 | 8 | Alto |
-
+| R21 | Denial of Service | A criação automatizada de pedidos consome recursos da plataforma e pode degradar seu desempenho | Ausência de limitação de frequência e de mecanismos de detecção de automação na criação de pedidos | 3 | 3 | 9 | Alto |
+| R22 | Elevation of Privilege / Spoofing | Um atacante utiliza uma conta administrativa comprometida para executar operações sensíveis | Credenciais ou sessão administrativa comprometida e ausência de controles adicionais para operações privilegiadas | 2 | 4 | 8 | Alto |
+| R23 | Elevation of Privilege / Spoofing | Um usuário sem privilégios administrativos acessa funções destinadas exclusivamente a administradores | API não verifica adequadamente a role ou as permissões do usuário no backend | 2 | 4 | 8 | Alto |
 
 ### 8.5 Justificativas
 
@@ -195,3 +197,61 @@ A pontuação permite estabelecer uma comparação e uma ordem de prioridade ent
 **Probabilidade:** Média-baixa. O ataque exige a geração automatizada de um volume suficiente de transações inválidas para provocar limitação ou bloqueio por parte do Gateway de Pagamento.
 
 **Impacto:** Muito alto. Caso a integração seja limitada ou bloqueada, clientes legítimos podem ficar temporariamente impossibilitados de concluir pagamentos e, consequentemente, de realizar novos pedidos.
+
+#### R21 — Criação automatizada de pedidos
+
+**Probabilidade:** Média-alta. A criação de pedidos é uma funcionalidade acessível a clientes e pode ser automatizada quando não existem mecanismos eficazes de limitação de frequência ou detecção de comportamento automatizado.
+
+**Impacto:** Alta. O abuso pode consumir recursos do backend e do banco de dados e gerar notificações e operações desnecessárias, mas normalmente não provoca imediatamente a indisponibilidade completa da plataforma.
+
+#### R22 — Abuso de conta administrativa comprometida
+
+**Probabilidade:** Média-baixa. O cenário exige o comprometimento prévio das credenciais ou sessão de um administrador, o que reduz sua frequência em comparação com ataques contra usuários comuns.
+
+**Impacto:** Muito alto. Uma conta administrativa possui capacidade de gerenciar usuários, aprovar parceiros, monitorar pedidos e atuar em chamados e operações sensíveis. O comprometimento pode, portanto, produzir efeitos em escala.
+
+#### R23 — Acesso às funções administrativas
+
+**Probabilidade:** Média-baixa. A exploração depende de uma falha específica no controle de autorização do backend, como a existência de endpoints administrativos que não validem adequadamente a role do usuário.
+
+**Impacto:** Muito alto. O acesso indevido pode permitir operações administrativas sobre contas, pedidos, cadastros e outras funções críticas da plataforma.
+
+Aqui está a seção 8.6 refatorada e devidamente ordenada de acordo com as pontuações (do maior para o menor) estabelecidas na tabela 8.4.
+
+Foi corrigido o erro de ordenação do item **R18** (que possuía pontuação 4, mas estava listado acima de itens com pontuação 6) e removido o 24º item duplicado/inexistente ("R23 — Consulta automatizada..."), já que a tabela original conta com exatamente 23 riscos.
+
+### 8.6 Priorização
+
+A ordem inicial de prioridade foi definida considerando a pontuação obtida na análise de risco. Nos casos de mesma pontuação, foram considerados como critérios complementares a abrangência do impacto, a quantidade de usuários potencialmente afetados e a criticidade da operação comprometida.
+
+1. **R19 — Indisponibilidade da plataforma por sobrecarga (16):** possui a maior pontuação da análise e pode comprometer simultaneamente o acesso de clientes, estabelecimentos e entregadores, afetando diretamente a disponibilidade da plataforma.
+2. **R01 — Uso indevido da conta de um cliente (12):** possui pontuação crítica e pode resultar em prejuízo financeiro direto para os clientes, além de permitir que o atacante utilize funcionalidades legítimas da conta comprometida.
+3. **R11 — Acesso a informações da conta e pedidos de outro usuário (12):** possui pontuação crítica e pode permitir acesso a recursos pertencentes a terceiros, comprometendo o isolamento entre as contas da plataforma.
+4. **R12 — Exposição de endereços e informações de localização (12):** possui pontuação crítica e envolve informações cuja exposição pode comprometer significativamente a privacidade e a segurança de clientes e entregadores.
+5. **R13 — Vazamento de dados pessoais (12):** possui pontuação crítica e pode resultar na exposição de dados pessoais de clientes, entregadores e estabelecimentos, potencialmente em grande escala.
+6. **R21 — Criação automatizada de pedidos (9):** possui pontuação alta e pode gerar grande quantidade de operações desnecessárias, consumindo recursos da plataforma e degradando o desempenho para usuários legítimos.
+7. **R04 — Manipulação do valor do pedido (8):** possui pontuação alta e pode causar prejuízo financeiro direto ao alterar indevidamente o valor dos pedidos durante sua finalização.
+8. **R05 — Liberação indevida de repasse (8):** possui pontuação alta e pode resultar na liberação de valores mantidos em custódia sem que a coleta ou entrega tenha sido devidamente confirmada.
+9. **R23 — Acesso não autorizado às funções administrativas (8):** possui pontuação alta e pode permitir que um usuário obtenha acesso a operações administrativas capazes de afetar diferentes recursos da plataforma.
+10. **R02 — Alteração dos dados de recebimento (8):** possui pontuação alta e pode direcionar valores devidos a um estabelecimento para uma conta ou chave de pagamento controlada pelo atacante.
+11. **R22 — Abuso de conta administrativa comprometida (8):** possui pontuação alta e pode permitir a execução de operações sensíveis utilizando os privilégios legítimos de uma conta administrativa comprometida.
+12. **R06 — Uso indevido de cupons (8):** possui pontuação alta e pode permitir a obtenção de descontos superiores aos previstos, gerando prejuízo financeiro para a plataforma ou para os estabelecimentos.
+13. **R14 — Vazamento de informações financeiras (8):** possui pontuação alta e pode revelar informações relacionadas a transações e dados financeiros de usuários ou estabelecimentos.
+14. **R10 — Manipulação de registros de auditoria (8):** possui pontuação alta e pode dificultar a identificação e investigação de operações fraudulentas, comprometendo a confiabilidade dos mecanismos de auditoria.
+15. **R20 — Saturação do fluxo de pagamentos (8):** possui pontuação alta e pode prejudicar a capacidade de clientes legítimos de concluir pagamentos, afetando diretamente a realização de novos pedidos.
+16. **R03 — Cadastro fraudulento de estabelecimento ou entregador (6):** possui pontuação média e pode introduzir uma identidade fraudulenta na plataforma, possibilitando posteriormente outros tipos de fraude.
+17. **R09 — Manipulação das avaliações (6):** possui pontuação média e pode distorcer a reputação de estabelecimentos ou entregadores, influenciando a percepção de outros usuários.
+18. **R15 — Rastreamento indevido de entregadores (6):** possui pontuação média e pode expor os deslocamentos de entregadores mesmo após o encerramento da relação autorizada com uma entrega.
+19. **R18 — Bloqueio de contas legítimas (4):** possui pontuação média e pode impedir temporariamente usuários legítimos de acessar suas contas e utilizar os serviços da plataforma.
+20. **R16 — Descoberta automatizada de cupons (4):** possui pontuação média e pode permitir a identificação de códigos promocionais válidos, possibilitando sua utilização indevida.
+21. **R17 — Enumeração de usuários (4):** possui pontuação média e pode revelar quais usuários possuem contas cadastradas na plataforma, fornecendo informações que podem facilitar ataques posteriores.
+22. **R07 — Manipulação da localização do entregador (2):** possui pontuação baixa e tende a afetar principalmente a confiabilidade das informações de acompanhamento, com impacto limitado sobre outras operações da plataforma.
+23. **R08 — Falsificação de notificações de pedido (2):** possui pontuação baixa e pode induzir usuários ou componentes a interpretar incorretamente o estado de um pedido, mas apresenta impacto limitado no contexto analisado.
+
+## 8.7 Conclusão da análise
+
+A aplicação do STRIDE permitiu identificar diferentes ameaças, mas a avaliação de probabilidade e impacto mostrou que elas não possuem a mesma prioridade de tratamento.
+
+Os riscos críticos e altos deverão receber atenção inicial, especialmente aqueles relacionados à disponibilidade da plataforma, à segurança das transações financeiras e à proteção dos dados pessoais de clientes, entregadores e estabelecimentos.
+
+A classificação atual representa uma avaliação preliminar baseada no contexto operacional conhecido. Ela poderá ser revisada à medida que a arquitetura evoluir ou quando surgirem novas informações sobre o sistema, o comportamento dos usuários ou incidentes observados.
