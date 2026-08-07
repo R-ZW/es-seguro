@@ -130,3 +130,47 @@ A ordem inicial sugerida leva em consideração a criticidade dos riscos identif
 8. **Revisar periodicamente os riscos, controles e níveis residuais**, considerando alterações na arquitetura, novas funcionalidades, mudanças nas integrações externas e novas informações obtidas a partir do monitoramento e dos incidentes.
 
 > **Nota:** Essa ordem poderá ser ajustada de acordo com a disponibilidade de recursos, as dependências técnicas identificadas, os resultados obtidos nos testes e o surgimento de novas informações relacionadas aos riscos.nos testes e o surgimento de novas informações relacionadas aos riscos.
+
+
+### 9.6 Estimativa do risco residual
+
+A tabela apresenta uma estimativa do nível de risco esperado após a implementação e a validação dos controles propostos. Essa classificação corresponde ao risco residual, ou seja, aquele que permanece mesmo após a adoção das medidas de tratamento, não indicando que o risco tenha sido totalmente eliminado.
+
+| Risco                                                              | Nível inicial | Nível residual esperado | Condição para aceitar o residual                                                                                            |
+| ------------------------------------------------------------------ | ------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **R01 — Uso indevido da conta de um cliente**                      | Crítico       | Médio                   | Autenticação reforçada, proteção de sessão, alertas e procedimentos de recuperação funcionando adequadamente                |
+| **R02 — Alteração dos dados de recebimento**                       | Alto          | Baixo                   | Alterações financeiras protegidas por autenticação adicional, autorização, registro e notificação                           |
+| **R03 — Cadastro fraudulento de estabelecimento ou entregador**    | Médio         | Baixo                   | Processo de validação de identidade e documentação implementado e revisado periodicamente                                   |
+| **R04 — Manipulação do valor do pedido**                           | Alto          | Baixo                   | Valores recalculados e validados no servidor, com controles de integridade e autorização testados                           |
+| **R05 — Liberação indevida de repasse**                            | Alto          | Médio                   | Confirmações de coleta e entrega protegidas, validações das etapas implementadas e repasses rastreáveis                     |
+| **R06 — Uso indevido de cupons**                                   | Alto          | Baixo                   | Regras de cupons validadas no servidor, limites de utilização e detecção de abuso funcionando                               |
+| **R07 — Manipulação da localização do entregador**                 | Baixo         | Baixo                   | Validação de coordenadas e mecanismos de detecção de inconsistências implementados e testados                               |
+| **R08 — Falsificação de notificações de pedido**                   | Baixo         | Baixo                   | Autenticação e integridade das notificações validadas e mensagens inválidas corretamente rejeitadas                         |
+| **R09 — Manipulação das avaliações**                               | Médio         | Baixo                   | Relação entre usuário e pedido validada, alterações controladas e padrões anormais monitorados                              |
+| **R10 — Manipulação de registros de auditoria**                    | Alto          | Baixo                   | Logs protegidos contra alteração e exclusão, controle de acesso e política de retenção validados                            |
+| **R11 — Acesso a informações da conta e pedidos de outro usuário** | Crítico       | Baixo                   | Autorização por recurso, segregação dos dados e testes de acesso indevido funcionando adequadamente                         |
+| **R12 — Exposição de endereços e informações de localização**      | Crítico       | Médio                   | Controle de acesso, minimização dos dados, limitação temporal e monitoramento das consultas funcionando                     |
+| **R13 — Vazamento de dados pessoais pela API**                     | Crítico       | Médio                   | Controle de acesso à API, minimização dos dados retornados e monitoramento de consultas funcionando                         |
+| **R14 — Vazamento de informações financeiras**                     | Alto          | Médio                   | Acesso restrito às informações financeiras, autenticação adicional e monitoramento funcionando                              |
+| **R15 — Rastreamento indevido de entregadores**                    | Médio         | Baixo                   | Permissões de localização limitadas à duração da entrega e encerradas após o término da finalidade                          |
+| **R16 — Descoberta automatizada de cupons**                        | Médio         | Baixo                   | Limitação de tentativas, respostas que não permitam descoberta indevida e detecção de automação implementadas               |
+| **R17 — Enumeração de usuários**                                   | Médio         | Baixo                   | Respostas uniformes, limitação de consultas e detecção de enumeração automatizada funcionando                               |
+| **R18 — Bloqueio de contas legítimas**                             | Médio         | Baixo                   | Limitação de tentativas, proteção contra automação e mecanismos seguros de desbloqueio funcionando                          |
+| **R19 — Indisponibilidade da plataforma por sobrecarga**           | Crítico       | Alto                    | Rate limiting, monitoramento, capacidade de absorção de picos, proteção contra tráfego malicioso e recuperação testados     |
+| **R20 — Saturação do fluxo de pagamentos**                         | Alto          | Médio                   | Limitação de tentativas, detecção de transações anormais e mecanismos de contingência do pagamento funcionando              |
+| **R21 — Criação automatizada de pedidos**                          | Alto          | Médio                   | Limitação de criação de pedidos, detecção de automação e mecanismos de contenção funcionando                                |
+| **R22 — Abuso de conta administrativa comprometida**               | Alto          | Médio                   | Autenticação reforçada, menor privilégio, monitoramento e procedimentos de resposta para contas administrativas funcionando |
+| **R23 — Acesso não autorizado às funções administrativas**         | Alto          | Baixo                   | Autorização administrativa, menor privilégio e autenticação reforçada validados por testes                                  |
+
+
+A redução estimada deverá ser verificada por meio da realização de testes, do monitoramento contínuo e da revisão dos controles implementados. Caso as medidas adotadas não apresentem os resultados esperados, será necessário reavaliar o risco e estabelecer novos tratamentos.
+
+Os riscos classificados como Médio ou Alto após o tratamento não indicam, necessariamente, que os controles implementados sejam ineficazes. Em algumas situações, a eliminação completa do risco pode comprometer funcionalidades essenciais do sistema ou depender de fatores externos à plataforma. Nesses casos, o risco residual deverá ser formalmente aceito, registrado e acompanhado pelos responsáveis.
+
+## 9.7 Conclusão do tratamento
+
+A etapa de priorização permitiu identificar quais riscos devem receber atenção inicialmente. Nesse processo, o **NIST CSF** contribuiu para estruturar os resultados esperados de segurança por meio das funções Govern, Identify, Protect, Detect, Respond e Recover.
+
+A abordagem de tratamento proposta reúne políticas, definição de responsabilidades, mecanismos técnicos, atividades de monitoramento e procedimentos de resposta. Isso evidencia que a segurança não depende da aplicação de um único controle, nem se limita à prevenção de ataques.
+
+Os controles propostos ainda precisam ser detalhados durante o desenvolvimento da arquitetura, posteriormente implementados e, então, avaliados quanto à sua efetividade. Apenas com a obtenção de evidências por meio dessas etapas será possível verificar se houve uma redução efetiva dos riscos e determinar se o nível de risco residual poderá ser formalmente aceito.
