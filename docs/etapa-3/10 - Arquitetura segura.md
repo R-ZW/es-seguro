@@ -23,3 +23,15 @@ Para fundamentar as estratégias de mitigação, esta seção mapeia os principa
 | **R23 — Acesso não autorizado às funções administrativas** | Quebra de controle de acesso a nível de função (Missing Authorization) | CWE-862 (Missing Authorization) / OWASP Top 10 A01:2021 – Broken Access Control / OWASP API Security Top 10 (API5:2023) | Permite que um usuário comum descubra e acesse as rotas administrativas da API para executar ações privilegiadas, pois o sistema oculta os botões no frontend, mas não bloqueia a requisição no backend. |
 
 ---
+
+## 18.3 Diagrama da arquitetura segura
+
+Abaixo é apresentada a representação visual da arquitetura segura estruturada para a plataforma. O diagrama `C4 Model` (nível de `Contaneirs`) destaca os principais componentes do sistema, as fronteiras de confiança, os fluxos de dados sensíveis e os pontos exatos onde os controles de segurança estabelecidos são aplicados.
+
+#### Diagrama C4 Model - Containers
+![Diagrama C4 Model - Containers](../../diagramas/structurizr/out/c4-model-diagrama.png)
+
+#### Legenda
+![Legenda](../../diagramas/structurizr/out/c4-model-legenda.png)
+
+---
