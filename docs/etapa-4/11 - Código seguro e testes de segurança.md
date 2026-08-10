@@ -91,3 +91,102 @@ def secure_create_order(payload, catalog):
 - valores enviados pelo cliente não são usados como fonte de verdade.
 
 ---
+
+## 11.4 Prática 2 — Controle de autorização no backend
+
+### Risco e requisito relacionados
+
+| Item | Descrição |
+| --- | --- |
+| **Riscos** | R11 — Usuário acessa dados ou pedidos de outro usuário; R23 — Usuário sem privilégio acessa funções administrativas. |
+| **Requisito seguro** | Toda requisição deve passar por uma checagem de autorização no servidor, considerando o papel do usuário e sua relação com o recurso acessado. |
+| **Referência OWASP** | OWASP Authorization Cheat Sheet. A referência recomenda negar por padrão, validar permissões em cada requisição e não depender apenas da interface do usuário. |
+
+### Testes antes da implementação
+
+| Teste | Entrada ou ação | Resultado seguro esperado |
+| --- | --- | --- |
+| **TS03** | Cliente `cli-1` acessa o pedido cujo `customer_id` é `cli-1` | A solicitação é permitida. |
+| **TS04** | Cliente `cli-2` tenta acessar pedido cujo `customer_id` é `cli-1` ou cliente comum tenta executar `refund` | A solicitação é recusada com erro de autorização. |
+
+### Implementação sem segurança
+
+Na versão insegura, o sistema só verifica se existe algum usuário autenticado:
+
+```python
+def insecure_authorize_order_action(user, order, action):
+    return bool(user)
+```
+
+Problema: qualquer cliente autenticado poderia alterar o identificador do pedido na requisição e consultar dados de outro cliente.
+
+### Implementação segura
+
+Na versão segura, a autorização é feita no servidor. O sistema verifica a `role` do usuário e se ele possui relação direta com o pedido:
+
+```python
+def secure_authorize_order_action(user, order, action):
+    if user["role"] == "admin":
+        return True
+
+    if user["role"] == "cliente":
+        return action == "read" and order["customer_id"] == user["id"]
+
+    raise AuthorizationError("Access denied.")
+```
+
+No exemplo completo, também há regras para `estabelecimento` e `entregador`.
+
+### Resultado esperado
+
+- autenticação e autorização ficam separadas;
+- usuários autenticados não acessam automaticamente qualquer recurso;
+- pedidos de terceiros são protegidos contra IDOR;
+- funções administrativas continuam restritas a usuários com papel adequado.
+
+---
+
+## 11.5 Testes automatizados
+
+Foram implementados testes executáveis para demonstrar o comportamento das versões insegura e segura.
+
+| Teste automatizado | O que demonstra |
+| --- | --- |
+| `test_pedido_inseguro_confia_no_total_do_cliente` | A versão insegura aceita o total manipulado pelo cliente. |
+| `test_pedido_seguro_calcula_total_no_servidor` | A versão segura calcula o valor correto no servidor. |
+| `test_pedido_seguro_rejeita_campo_total_do_cliente` | A versão segura rejeita o campo `total_cents` enviado pelo cliente. |
+| `test_pedido_seguro_rejeita_entrada_invalida` | A versão segura rejeita entrada malformada. |
+| `test_autorizacao_insegura_permite_idor` | A versão insegura permite acesso indevido por usuário autenticado. |
+| `test_autorizacao_segura_permite_dono_do_pedido` | A versão segura permite acesso ao dono do pedido. |
+| `test_autorizacao_segura_bloqueia_outro_cliente` | A versão segura bloqueia acesso a pedido de outro cliente. |
+| `test_autorizacao_segura_bloqueia_acao_admin_para_cliente` | A versão segura bloqueia ação administrativa executada por cliente comum. |
+
+Comando:
+
+```bash
+python -m unittest discover -s tests
+```
+
+Para exibir os nomes dos testes e os prints demonstrando entrada, resultado esperado e resultado observado:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+Resultado esperado:
+
+```text
+Ran 8 tests
+OK
+```
+
+### 11.6 Referências utilizadas
+
+- OWASP Cheat Sheet Series — Input Validation Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html
+- OWASP Cheat Sheet Series — Authorization Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html
+
+### 11.7 Conclusão da Etapa 4
+
+A Etapa 4 demonstrou duas práticas de código seguro ligadas diretamente aos riscos anteriores. A primeira impede manipulação de preço ao recalcular valores no servidor. A segunda impede acesso indevido ao validar autorização no backend.
+
+A comparação entre implementação insegura e segura deixa claro que o problema não está apenas na interface, mas na confiança indevida em dados e ações vindas do cliente. Por isso, as validações precisam ocorrer no servidor e devem ser verificadas por testes de segurança.
