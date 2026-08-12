@@ -1,0 +1,43 @@
+
+# ========================================
+# 1. DoS HTTP Attack
+# ========================================
+alert tcp any any -> any 80 (msg:"ATAQUE -> HTTP DoS GET Flood"; content:"GET"; http_method; detection_filter:track by_src, count 20, seconds 5; sid:1000001; rev:1;)
+alert tcp any any -> any 80 (msg:"ATAQUE -> HTTP DoS POST Flood"; content:"POST"; http_method; detection_filter:track by_src, count 10, seconds 5; sid:1000002; rev:1;)
+alert tcp any any -> any 80 (msg:"ATAQUE -> HTTP Large Header"; content:"X-Custom-Header"; http_header; sid:1000003; rev:1;)
+alert tcp any any -> any 80 (msg:"ATAQUE -> HTTP DoS User-Agent"; content:"DoS-Test"; http_header; sid:1000004; rev:1;)
+
+# ========================================
+# 2. SSH Brute Force Attack
+# ========================================
+alert tcp any any -> any 22 (msg:"ATAQUE -> SSH Brute Force"; content:"SSH-2.0"; depth:8; detection_filter:track by_src, count 10, seconds 60; sid:1000005; rev:1;)
+alert tcp any any -> any 22 (msg:"ATAQUE -> SSH Multiple Connections"; flags:S; detection_filter:track by_src, count 20, seconds 30; sid:1000006; rev:1;)
+
+# ========================================
+# 3. ICMP Ping Flood Attack
+# ========================================
+alert icmp any any -> any any (msg:"ATAQUE -> ICMP Ping Flood"; itype:8; detection_filter:track by_src, count 50, seconds 5; sid:1000007; rev:1;)
+alert icmp any any -> any any (msg:"LOG -> PING REALIZADO"; itype:8; sid:1000008; rev:1;)
+
+# ========================================
+# 4. SQL Injection Attack
+# ========================================
+alert tcp any any -> any 80 (msg:"ATAQUE -> SQL Injection UNION"; content:"union"; nocase; content:"select"; nocase; sid:1000009; rev:1;)
+alert tcp any any -> any 80 (msg:"ATAQUE -> SQL Injection OR 1=1"; content:"or"; nocase; content:"1=1"; nocase; sid:1000010; rev:1;)
+alert tcp any any -> any 80 (msg:"ATAQUE -> SQL Comment Injection"; content:"--"; http_uri; sid:1000012; rev:1;)
+alert tcp any any -> any 80 (msg:"ATAQUE -> SQL Injection Quote"; content:"'"; http_uri; sid:1000013; rev:1;)
+
+# ========================================
+# 5. DNS Tunneling Attack
+# ========================================
+alert udp any any -> any 53 (msg:"ATAQUE -> DNS Tunneling High Volume"; detection_filter:track by_src, count 50, seconds 10; sid:1000014; rev:1;)
+alert udp any any -> 8.8.8.8 53 (msg:"ATAQUE -> DNS Queries to 8.8.8.8"; detection_filter:track by_src, count 20, seconds 10; sid:1000015; rev:1;)
+alert udp any any -> any 53 (msg:"ATAQUE -> DNS Tunneling Pacote UDP Muito Grande"; flow:to_server; dsize:>200; classtype:policy-violation; sid:1000016; rev:1;)
+
+# ========================================
+# LOGS GERAIS
+# ========================================
+alert tcp any any -> any 80 (msg:"LOG -> HTTP GET"; content:"GET"; http_method; sid:1000017; rev:1;)
+alert tcp any any -> any 80 (msg:"LOG -> HTTP POST"; content:"POST"; http_method; sid:1000018; rev:1;)
+alert tcp any any -> any 22 (msg:"LOG -> SSH Connection"; content:"SSH-2.0"; depth:8; sid:1000019; rev:1;)
+alert udp any any -> any 53 (msg:"LOG -> DNS Query"; sid:1000020; rev:1;)

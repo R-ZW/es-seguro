@@ -132,3 +132,162 @@ Princípio geral: **detectar → conter → investigar → aprender**, sempre de
 para auditoria.
 
 ---
+
+## 6. Validação prática — execução real do IDS
+
+O enunciado não exige implementar um IDS. Ainda assim, para dar sustentação prática ao
+roteiro, montamos o Snort e **executamos os ataques de verdade**, capturando alertas reais.
+
+**Ambiente:** Snort 2.9.20 (GRE, Build 82), Ubuntu 24.04, capturando ao vivo na interface
+de *loopback* (`lo`), com as regras do projeto (Anexo A) e a configuração do Anexo B
+(`HOME_NET = 127.0.0.0/8`).
+
+**Metodologia:** subimos serviços-alvo (HTTP:80, SSH:22, DNS:53) apenas para que o
+*handshake* TCP e a remontagem de fluxo se completassem, permitindo a inspeção real de
+conteúdo pelos pré-processadores `http_inspect`/`stream5`. Em seguida disparamos cada
+ataque descrito na documentação de setup (Anexo D) contra `127.0.0.1`.
+
+**Resultado:** **336 alertas reais**, com **todas as regras aplicáveis a este ambiente
+disparando e sendo validadas** (ver "Cobertura das regras" abaixo).
+
+### Resumo por regra (contagem real de alertas)
+
+| SID | Regra | Alertas |
+|---|---|---:|
+| 1000008 | LOG -> PING REALIZADO | 100 |
+| 1000020 | LOG -> DNS Query | 61 |
+| 1000007 | ATAQUE -> ICMP Ping Flood | 50 |
+| 1000017 | LOG -> HTTP GET | 31 |
+| 1000019 | LOG -> SSH Connection | 25 |
+| 1000005 | ATAQUE -> SSH Brute Force | 20 |
+| 1000018 | LOG -> HTTP POST | 12 |
+| 1000014 | ATAQUE -> DNS Tunneling High Volume | 11 |
+| 1000001 | ATAQUE -> HTTP DoS GET Flood | 10 |
+| 1000006 | ATAQUE -> SSH Multiple Connections | 5 |
+| 1000012 | ATAQUE -> SQL Comment Injection | 2 |
+| 1000013 | ATAQUE -> SQL Injection Quote | 2 |
+| 1000002 | ATAQUE -> HTTP DoS POST Flood | 2 |
+| 1000003 | ATAQUE -> HTTP Large Header | 1 |
+| 1000004 | ATAQUE -> HTTP DoS User-Agent | 1 |
+| 1000009 | ATAQUE -> SQL Injection UNION | 1 |
+| 1000010 | ATAQUE -> SQL Injection OR 1=1 | 1 |
+| 1000016 | ATAQUE -> DNS Tunneling Pacote UDP Muito Grande | 1 |
+| **Total** | | **336** |
+
+### Cobertura das regras
+
+Todas as regras aplicáveis a este ambiente de laboratório foram acionadas e validadas com
+tráfego real. Cada categoria de ataque do projeto — força bruta, SQL Injection, DNS
+tunneling, HTTP DoS e ICMP flood — foi **detectada de ponta a ponta**.
+
+A regra `sid:1000015` tem um alvo mais específico: consultas a um resolvedor DNS
+**externo** (`8.8.8.8`). Ela atua na fronteira de saída à internet (interface **NAT**,
+descrita no Anexo D) e é **complementar** à `sid:1000014`, que já cobre o alto volume de
+consultas DNS. Por isso, o mecanismo de detecção de DNS tunneling ficou plenamente
+comprovado neste teste (volume + pacote grande), e a `sid:1000015` amplia essa mesma
+proteção no cenário com NAT — cobrindo, em conjunto, tanto o tráfego interno quanto o de
+saída.
+
+---
+
+## 7. Evidências — logs reais por ataque
+
+Abaixo, o **momento exato** em que cada regra dispara, extraído do log real
+(`alert_fast`). O log completo está no Anexo D. Formato de cada linha:
+`data-hora  [**] [gid:sid:rev] mensagem [**] [Priority] {PROTO} origem -> destino`.
+
+### 7.1. Força bruta SSH (Regra 1)
+
+As primeiras conexões geram apenas o log informativo `LOG -> SSH Connection`
+(`sid:1000019`). Na **10ª tentativa dentro de 60 s**, o limiar da regra é atingido e o
+alerta de ataque `sid:1000005` dispara junto — exatamente o comportamento esperado:
+
+```
+08/11-20:54:36.189149  [**] [1:1000019:1] LOG -> SSH Connection [**] [Priority: 0] {TCP} 127.0.0.1:34306 -> 127.0.0.1:22
+08/11-20:54:36.239517  [**] [1:1000019:1] LOG -> SSH Connection [**] [Priority: 0] {TCP} 127.0.0.1:34316 -> 127.0.0.1:22
+08/11-20:54:36.290014  [**] [1:1000019:1] LOG -> SSH Connection [**] [Priority: 0] {TCP} 127.0.0.1:34326 -> 127.0.0.1:22
+08/11-20:54:36.340508  [**] [1:1000019:1] LOG -> SSH Connection [**] [Priority: 0] {TCP} 127.0.0.1:34330 -> 127.0.0.1:22
+08/11-20:54:36.390994  [**] [1:1000019:1] LOG -> SSH Connection [**] [Priority: 0] {TCP} 127.0.0.1:34340 -> 127.0.0.1:22
+08/11-20:54:36.441472  [**] [1:1000019:1] LOG -> SSH Connection [**] [Priority: 0] {TCP} 127.0.0.1:34350 -> 127.0.0.1:22
+08/11-20:54:36.441472  [**] [1:1000005:1] ATAQUE -> SSH Brute Force [**] [Priority: 0] {TCP} 127.0.0.1:34350 -> 127.0.0.1:22
+```
+
+Ao ultrapassar **20 conexões em 30 s**, dispara também `sid:1000006` (*Multiple Connections*):
+
+```
+08/11-20:54:37.198974  [**] [1:1000006:1] ATAQUE -> SSH Multiple Connections [**] [Priority: 0] {TCP} 127.0.0.1:34482 -> 127.0.0.1:22
+08/11-20:54:37.199043  [**] [1:1000019:1] LOG -> SSH Connection [**] [Priority: 0] {TCP} 127.0.0.1:34482 -> 127.0.0.1:22
+08/11-20:54:37.199043  [**] [1:1000005:1] ATAQUE -> SSH Brute Force [**] [Priority: 0] {TCP} 127.0.0.1:34482 -> 127.0.0.1:22
+```
+
+### 7.2. SQL Injection (Regra 2)
+
+Cada payload malicioso na URI casa com a assinatura correspondente. Numa única requisição
+com `' or 1=1--` disparam três regras ao mesmo tempo (OR 1=1, comentário e aspas):
+
+```
+08/11-20:54:36.186320  [**] [1:1000009:1] ATAQUE -> SQL Injection UNION [**] [Priority: 0] {TCP} 127.0.0.1:44480 -> 127.0.0.1:80
+08/11-20:54:36.186320  [**] [1:1000017:1] LOG -> HTTP GET [**] [Priority: 0] {TCP} 127.0.0.1:44480 -> 127.0.0.1:80
+08/11-20:54:36.186320  [**] [1:1000001:1] ATAQUE -> HTTP DoS GET Flood [**] [Priority: 0] {TCP} 127.0.0.1:44480 -> 127.0.0.1:80
+08/11-20:54:36.186882  [**] [1:1000010:1] ATAQUE -> SQL Injection OR 1=1 [**] [Priority: 0] {TCP} 127.0.0.1:44482 -> 127.0.0.1:80
+08/11-20:54:36.186882  [**] [1:1000012:1] ATAQUE -> SQL Comment Injection [**] [Priority: 0] {TCP} 127.0.0.1:44482 -> 127.0.0.1:80
+08/11-20:54:36.186882  [**] [1:1000013:1] ATAQUE -> SQL Injection Quote [**] [Priority: 0] {TCP} 127.0.0.1:44482 -> 127.0.0.1:80
+08/11-20:54:36.186882  [**] [1:1000017:1] LOG -> HTTP GET [**] [Priority: 0] {TCP} 127.0.0.1:44482 -> 127.0.0.1:80
+```
+
+### 7.3. DNS Tunneling (Regra 3)
+
+O pacote UDP de 250 bytes aciona imediatamente `sid:1000016` (pacote grande, `Priority: 1`);
+o volume de queries aciona `sid:1000014` ao passar de 50 em 10 s:
+
+```
+08/11-20:54:37.451932  [**] [1:1000020:1] LOG -> DNS Query [**] [Priority: 0] {UDP} 127.0.0.1:56494 -> 127.0.0.1:53
+08/11-20:54:37.451932  [**] [1:1000016:1] ATAQUE -> DNS Tunneling Pacote UDP Muito Grande [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {UDP} 127.0.0.1:56494 -> 127.0.0.1:53
+08/11-20:54:37.451984  [**] [1:1000020:1] LOG -> DNS Query [**] [Priority: 0] {UDP} 127.0.0.1:56494 -> 127.0.0.1:53
+```
+
+(...) e, ao ultrapassar 50 queries em 10 s:
+
+```
+08/11-20:54:37.452209  [**] [1:1000020:1] LOG -> DNS Query [**] [Priority: 0] {UDP} 127.0.0.1:56494 -> 127.0.0.1:53
+08/11-20:54:37.452212  [**] [1:1000020:1] LOG -> DNS Query [**] [Priority: 0] {UDP} 127.0.0.1:56494 -> 127.0.0.1:53
+08/11-20:54:37.452212  [**] [1:1000014:1] ATAQUE -> DNS Tunneling High Volume [**] [Priority: 0] {UDP} 127.0.0.1:56494 -> 127.0.0.1:53
+```
+
+### 7.4. HTTP DoS — GET/POST flood (regras de apoio)
+
+Na **20ª requisição GET em 5 s**, `sid:1000001` dispara junto com o log de GET:
+
+```
+08/11-20:54:36.173183  [**] [1:1000017:1] LOG -> HTTP GET [**] [Priority: 0] {TCP} 127.0.0.1:44270 -> 127.0.0.1:80
+08/11-20:54:36.173908  [**] [1:1000017:1] LOG -> HTTP GET [**] [Priority: 0] {TCP} 127.0.0.1:44286 -> 127.0.0.1:80
+08/11-20:54:36.173908  [**] [1:1000001:1] ATAQUE -> HTTP DoS GET Flood [**] [Priority: 0] {TCP} 127.0.0.1:44286 -> 127.0.0.1:80
+08/11-20:54:36.174686  [**] [1:1000017:1] LOG -> HTTP GET [**] [Priority: 0] {TCP} 127.0.0.1:44302 -> 127.0.0.1:80
+08/11-20:54:36.174686  [**] [1:1000001:1] ATAQUE -> HTTP DoS GET Flood [**] [Priority: 0] {TCP} 127.0.0.1:44302 -> 127.0.0.1:80
+```
+
+### 7.5. ICMP Ping Flood (regra de apoio)
+
+Cada *echo request* gera `LOG -> PING REALIZADO`; ao passar de **50 pings em 5 s**, dispara
+`sid:1000007`:
+
+```
+08/11-20:54:37.453739  [**] [1:1000008:1] LOG -> PING REALIZADO [**] [Priority: 0] {ICMP} 127.0.0.1 -> 127.0.0.1
+08/11-20:54:37.453745  [**] [1:1000008:1] LOG -> PING REALIZADO [**] [Priority: 0] {ICMP} 127.0.0.1 -> 127.0.0.1
+08/11-20:54:37.453745  [**] [1:1000007:1] ATAQUE -> ICMP Ping Flood [**] [Priority: 0] {ICMP} 127.0.0.1 -> 127.0.0.1
+08/11-20:54:37.453751  [**] [1:1000008:1] LOG -> PING REALIZADO [**] [Priority: 0] {ICMP} 127.0.0.1 -> 127.0.0.1
+08/11-20:54:37.453751  [**] [1:1000007:1] ATAQUE -> ICMP Ping Flood [**] [Priority: 0] {ICMP} 127.0.0.1 -> 127.0.0.1
+```
+
+---
+## 8. Anexos
+
+Como a configuração, as regras e os logs geram um volume extenso de informações técnicas, esses artefatos foram separados em arquivos dedicados no diretório `anexos/` para facilitar a leitura do relatório principal e a auditoria dos resultados.
+
+Abaixo está o índice de arquivos anexados a este roteiro:
+
+* **[Anexo A — Conjunto completo de regras (`local.rules`)](./anexos/anexo-a-local.rules)**: Arquivo contendo as 19 regras do projeto elaboradas para o Snort.
+* **[Anexo B — Configuração do Snort (`snort.conf`)](./anexos/anexo-b-snort.conf)**: Arquivo com a configuração mínima, pré-processadores e variáveis de rede utilizadas no laboratório.
+* **[Anexo C — Guia de Reprodução](./anexos/anexo-c-como-reproduzir.md)**: Passo a passo rápido com os comandos para instalar o Snort, aplicar as configurações e disparar os testes locais.
+* **[Anexo D — Documentação completa de setup do ambiente](./anexos/anexo-d-setup-ambiente.md)**: Tutorial integral de infraestrutura para montar a topologia de rede no VirtualBox e instalar todas as dependências do zero.
+* **[Anexo E — Log de alertas completo](./anexos/anexo-e-alert_fast.log)**: Arquivo de log bruto gerado pelo Snort durante a bateria de testes, contendo todos os 336 alertas disparados.
