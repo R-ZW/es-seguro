@@ -1,4 +1,34 @@
-## 6. Casos de abuso
+# `Yummers` - Aplicativo de delivery
+
+### Conteúdo da página:
+
+> [CA01 — Fraude de pedido por sequestro de conta de cliente](#ca01--fraude-de-pedido-por-sequestro-de-conta-de-cliente)<br>
+> [CA02 — Fraude por alteração não autorizada dos dados de recebimento de um estabelecimento](#ca02--fraude-por-alteração-não-autorizada-dos-dados-de-recebimento-de-um-estabelecimento)<br>
+> [CA03 — Exploração de cadastro fraudulento de estabelecimento ou entregador](#ca03--exploração-de-cadastro-fraudulento-de-estabelecimento-ou-entregador)<br>
+> [CA04 — Manipulação do valor do pedido durante a finalização da compra](#ca04--manipulação-do-valor-do-pedido-durante-a-finalização-da-compra)<br>
+> [CA05 — Liberação indevida de repasse por falsificação da confirmação de coleta ou entrega](#ca05--liberação-indevida-de-repasse-por-falsificação-da-confirmação-de-coleta-ou-entrega)<br>
+> [CA06 — Uso indevido de cupons por manipulação das regras de desconto](#ca06--uso-indevido-de-cupons-por-manipulação-das-regras-de-desconto)<br>
+> [CA07 — Manipulação da localização do entregador para fraudar o acompanhamento da entrega](#ca07--manipulação-da-localização-do-entregador-para-fraudar-o-acompanhamento-da-entrega)<br>
+> [CA08 — Interceptação ou falsificação de notificações de alteração de status do pedido](#ca08--interceptação-ou-falsificação-de-notificações-de-alteração-de-status-do-pedido)<br>
+> [CA09 — Manipulação das avaliações para prejudicar a reputação de um estabelecimento ou entregador](#ca09--manipulação-das-avaliações-para-prejudicar-a-reputação-de-um-estabelecimento-ou-entregador)<br>
+> [CA10 — Manipulação de registros de auditoria para ocultar uma operação fraudulenta](#ca10--manipulação-de-registros-de-auditoria-para-ocultar-uma-operação-fraudulenta)<br>
+> [CA11 — Acesso indevido às informações da conta de outro usuário por falha de autorização](#ca11--acesso-indevido-às-informações-da-conta-de-outro-usuário-por-falha-de-autorização)<br>
+> [CA12 — Exposição de endereço e localização de usuários por acesso indevido aos dados de entrega](#ca12--exposição-de-endereço-e-localização-de-usuários-por-acesso-indevido-aos-dados-de-entrega)<br>
+> [CA13 — Vazamento de dados pessoais por acesso indevido à API](#ca13--vazamento-de-dados-pessoais-por-acesso-indevido-à-api)<br>
+> [CA14 — Exposição de informações financeiras por acesso indevido ao histórico de transações](#ca14--exposição-de-informações-financeiras-por-acesso-indevido-ao-histórico-de-transações)<br>
+> [CA15 — Utilização indevida de dados de localização para rastrear entregadores fora de uma entrega autorizada](#ca15--utilização-indevida-de-dados-de-localização-para-rastrear-entregadores-fora-de-uma-entrega-autorizada)<br>
+> [CA16 — Tentativas automatizadas de cupons para descobrir códigos válidos](#ca16--tentativas-automatizadas-de-cupons-para-descobrir-códigos-válidos)<br>
+> [CA17 — Enumeração de usuários por respostas diferentes da API](#ca17--enumeração-de-usuários-por-respostas-diferentes-da-api)<br>
+> [CA18 — Bloqueio de contas legítimas por abuso do mecanismo de autenticação](#ca18--bloqueio-de-contas-legítimas-por-abuso-do-mecanismo-de-autenticação)<br>
+> [CA19 — Indisponibilização da plataforma por sobrecarga deliberada](#ca19--indisponibilização-da-plataforma-por-sobrecarga-deliberada)<br>
+> [CA20 — Abuso de operações administrativas por comprometimento de conta privilegiada](#ca20--abuso-de-operações-administrativas-por-comprometimento-de-conta-privilegiada)<br>
+> [CA21 — Saturação do fluxo de pagamentos por transações inválidas automatizadas](#ca21--saturação-do-fluxo-de-pagamentos-por-transações-inválidas-automatizadas)<br>
+> [CA22 — Criação automatizada de pedidos para consumir recursos da plataforma](#ca22--criação-automatizada-de-pedidos-para-consumir-recursos-da-plataforma)<br>
+> [CA23 — Acesso não autorizado às funções administrativas por falha de controle de privilégios](#ca23--acesso-não-autorizado-às-funções-administrativas-por-falha-de-controle-de-privilégios)<br>
+
+---
+
+## 🚨 6. Casos de abuso
 ### CA01 — Fraude de pedido por sequestro de conta de cliente
 
 **Ator:** atacante externo.

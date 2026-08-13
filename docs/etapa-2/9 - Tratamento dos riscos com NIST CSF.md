@@ -1,4 +1,18 @@
-## 9. Tratamento dos riscos com NIST CSF
+# `Yummers` - Aplicativo de delivery
+
+### Conteúdo da página:
+
+> [9.1 Estratégias de tratamento](#91-estratégias-de-tratamento)<br>
+> [9.2 Estratégia escolhida para cada risco](#92-estratégia-escolhida-para-cada-risco)<br>
+> [9.3 Mapeamento dos riscos para as funções do NIST CSF](#93-mapeamento-dos-riscos-para-as-funções-do-nist-csf)<br>
+> [9.4 Plano de tratamento dos riscos](#94-plano-de-tratamento-dos-riscos)<br>
+> [9.5 Ordem inicial de implementação](#95-ordem-inicial-de-implementação)<br>
+> [9.6 Estimativa do risco residual](#96-estimativa-do-risco-residual)<br>
+> [9.7 Conclusão do tratamento](#97-conclusão-do-tratamento)<br>
+
+---
+
+## 🧩 9. Tratamento dos riscos com NIST CSF
 
 Após a identificação e a avaliação dos riscos, foram estabelecidas estratégias e medidas de segurança visando reduzir a probabilidade de ocorrência dos eventos e, caso aconteçam, minimizar seus impactos.
 

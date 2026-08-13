@@ -1,6 +1,6 @@
 # `Yummers` - Aplicativo de delivery
 
-### Sumário da página:
+### Conteúdo da página:
 
 > [3.1 Usuários e perfis](#31-usuários-e-perfis)<br>
 > [3.2 Ativos importantes](#32-ativos-importantes)<br>
@@ -8,7 +8,7 @@
 
 ---
 
-## 3. Usuários, ativos e pontos de interação
+## 👥 3. Usuários, ativos e pontos de interação
 
 ### 3.1 Usuários e perfis
 

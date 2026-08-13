@@ -1,23 +1,19 @@
-# Etapa 6 — Monitoramento e Detecção de Intrusões
+# `Yummers` - Aplicativo de delivery
 
-> **Documento** Reúne, em ordem explicativa, todo o conteúdo da
-> Etapa 6: o roteiro conceitual exigido pelo enunciado (seções 1 a 5), a resposta a
-> incidentes (seção 5) e — como diferencial — a **validação prática com um IDS real**,
-> incluindo as regras, a configuração, o **setup completo do ambiente** e os **logs
-> verdadeiros** capturados (seções 6 e 7 e anexos A–E).
+### Conteúdo da página:
 
-## Sumário
-
-1. [O que é detecção de intrusões](#1-o-que-é-detecção-de-intrusões)
-2. [A diferença entre prevenir e detectar](#2-a-diferença-entre-prevenir-e-detectar)
-3. [Quais eventos do sistema deveriam ser registrados](#3-quais-eventos-do-sistema-deveriam-ser-registrados)
-4. [Três regras simples de detecção](#4-três-regras-simples-de-detecção)
-5. [O que deveria acontecer depois de um alerta](#5-o-que-deveria-acontecer-depois-de-um-alerta)
-6. [Validação prática — execução real do IDS](#6-validação-prática--execução-real-do-ids)
-7. [Evidências — logs reais por ataque](#7-evidências--logs-reais-por-ataque)
-8. [Anexos (regras, configuração, setup completo e log de auditoria)](#anexos)
+> [1. O que é detecção de intrusões](#1-o-que-é-detecção-de-intrusões) <br>
+> [2. A diferença entre prevenir e detectar](#2-a-diferença-entre-prevenir-e-detectar) <br>
+> [3. Quais eventos do sistema deveriam ser registrados](#3-quais-eventos-do-sistema-deveriam-ser-registrados) <br>
+> [4. Três regras simples de detecção](#4-três-regras-simples-de-detecção) <br>
+> [5. O que deveria acontecer depois de um alerta](#5-o-que-deveria-acontecer-depois-de-um-alerta) <br>
+> [6.Validação prática — execução real do IDS](#6-validação-prática--execução-real-do-ids) <br>
+> [7. Evidências — logs reais por ataque](#7-evidências--logs-reais-por-ataque) <br>
+> [8. Anexos (regras, configuração, setup completo e log de auditoria)](#8-anexos)<br>
 
 ---
+
+## 📡 Etapa 6 - Monitoramento e detecção de intrusões
 
 ## 1. O que é detecção de intrusões
 

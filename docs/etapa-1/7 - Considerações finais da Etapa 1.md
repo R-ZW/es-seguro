@@ -1,4 +1,12 @@
-## 7. Considerações finais da Etapa 1
+# `Yummers` - Aplicativo de delivery
+
+### Conteúdo da página:
+
+> [7. Considerações finais da Etapa 1](#-7-considerações-finais-da-etapa-1)<br>
+
+---
+
+## 📌 7. Considerações finais da Etapa 1
 
 As ameaças consideradas mais preocupantes são as fraudes financeiras, o acesso indevido às contas e aos dados de outros usuários, a alteração não autorizada de informações e estados dos pedidos, o comprometimento de contas administrativas e a indisponibilidade dos serviços durante períodos de maior demanda. Também merecem atenção os abusos relacionados ao fluxo de pagamentos, aos repasses aos estabelecimentos e à localização de entregadores.
 

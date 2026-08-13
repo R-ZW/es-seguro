@@ -1,4 +1,14 @@
-## 4. Visão geral da arquitetura e fluxo de uso
+# `Yummers` - Aplicativo de delivery
+
+### Conteúdo da página:
+
+> [4.1 Casos de uso](#41-casos-de-uso)<br>
+> [4.2 Diagrama de casos de uso](#42-diagrama-de-casos-de-uso)<br>
+> [4.3 Fluxo geral de interação](#43-fluxo-geral-de-interação)<br>
+
+---
+
+## 🔀 4. Visão geral da arquitetura e fluxo de uso
 
 ### 4.1 Casos de uso
 Nesta seção, são apresentados os principais casos de uso que compõem o sistema. Eles descrevem, sob a perspectiva de cada tipo de usuário, as funcionalidades disponíveis na plataforma e os objetivos associados a cada interação. Os casos estão organizados de acordo com os atores envolvidos: cliente, entregador, estabelecimento e administrador; e classificados conforme sua prioridade utilizando o método MoSCoW.

@@ -1,13 +1,25 @@
-## 1. Objetivo
+# `Yummers` - Aplicativo de delivery
+
+### Conteúdo da página:
+
+> [12.1. Objetivo](#121-objetivo)<br>
+> [12.2. Ambiente e ferramenta utilizados](#122-ambiente-e-ferramenta-utilizados)<br>
+> [12.3. Análise de Alertas e Achados](#123-análise-de-alertas-e-achados)<br>
+
+---
+
+## 🔎 12. Verificação de vulnerabilidades
+
+### 12.1. Objetivo
 Esta etapa utilizou uma ferramenta de teste de segurança para observar vulnerabilidades, alertas e configurações inseguras. A verificação foi realizada exclusivamente sobre uma aplicação deliberadamente vulnerável executada para fins educacionais (OWASP Juice Shop), executada localmente pelo próprio grupo, não envolvendo nenhum sistema de terceiros.
 
-## 2. Ambiente e ferramenta utilizados
+### 12.2. Ambiente e ferramenta utilizados
 * **Sistema/ambiente testado:** OWASP Juice Shop, disponibilizado localmente em `http://localhost:3000`
 * **Ferramenta utilizada:** OWASP ZAP (Zed Attack Proxy) by Checkmarx, versão 2.17.0
 * **Configuração básica do teste:** verificação automatizada (baseline/full scan) direcionada ao host `http://localhost:3000`, com todos os níveis de risco (Alto, Médio, Baixo, Informativo) e de confiança incluídos no relatório, sem exclusão de contextos
 * **Evidência da execução:** relatório HTML completo gerado pelo ZAP, armazenado em `evidencias/etapa-5/ (2026-08-13-ZAP-Report-.html)`, contendo requisições, respostas e capturas de cada alerta. Além disso, em `evidencias/etapa-5/` também podem ser encontradas outras capturas de tela referentes aos testes realizados. 
 
-### 2.1 Instruções para Reprodução do Ambiente (Como Rodar)
+#### 12.2.1 Instruções para Reprodução do Ambiente (Como Rodar)
 Para garantir a reprodutibilidade do teste, os seguintes passos foram executados:
 
 1. **Pré-requisitos:**
@@ -22,11 +34,11 @@ Para garantir a reprodutibilidade do teste, os seguintes passos foram executados
    Após a inicialização, o sistema alvo ficou acessível via navegador em `http://localhost:3000`.
 
 
-## 3. Análise de Alertas e Achados
+### 12.3. Análise de Alertas e Achados
 
 A sessão de verificação identificou 10 alertas distribuídos entre os níveis Alto (1), Médio (4), Baixo (3) e Informativo (2). A seguir são detalhados os três achados mais relevantes; os demais foram descartados por serem duplicados, de baixo impacto isolado ou meramente informativos, conforme justificado na tabela subsequente.
 
-### 3.1 Análise dos três principais achados
+#### 12.3.1 Análise dos três principais achados
 
 | ID | Alerta ou achado | Evidência | Possível impacto | Relação com OWASP/CWE | Correção proposta |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -34,7 +46,7 @@ A sessão de verificação identificou 10 alertas distribuídos entre os níveis
 | **A02** | Content Security Policy (CSP) Header Not Set | **Requisição:** GET `/`<br>**Resposta:** HTTP 200 sem o cabeçalho `Content-Security-Policy` | Facilita a exploração de XSS e ataques de injeção de conteúdo, pois o navegador não tem restrição sobre quais origens de script/estilo podem ser carregadas | OWASP Top 10 A05:2021 – Security Misconfiguration / CWE-693 (Protection Mechanism Failure) | Configurar o cabeçalho `Content-Security-Policy` no servidor/CDN, restringindo origens permitidas para `script-src`, `style-src`, `img-src` etc. |
 | **A03** | Configuração incorreta de CORS (`Access-Control-Allow-Origin: *`) | **Requisição:** GET `/robots.txt`<br>**Resposta:** HTTP 200 com o cabeçalho `Access-Control-Allow-Origin: *` | Permite que páginas de domínios arbitrários façam requisições de leitura à API a partir do navegador da vítima, o que pode expor dados não autenticados ou facilitar ataques em conjunto com outras falhas | OWASP Top 10 A01:2021 – Broken Access Control / CWE-264 (Permissions, Privileges, and Access Controls) | Restringir `Access-Control-Allow-Origin` a uma lista de domínios confiáveis (ou remover o cabeçalho quando não houver necessidade de acesso cross-origin) |
 
-### 3.2 Alertas descartados
+#### 12.3.2 Alertas descartados
 
 | Alerta descartado | Classificação ZAP | Motivo do descarte |
 | :--- | :--- | :--- |

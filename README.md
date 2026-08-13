@@ -1,6 +1,6 @@
 # `Yummers` - Aplicativo de delivery
 
-### Sumário da página:
+### Conteúdo da página:
 
 > [1. Identificação do sistema](#-1-identificação-do-sistema)<br>
 > [2. Descrição do sistema](#-2-descrição-do-sistema)<br>

@@ -1,4 +1,18 @@
-## 8. Análise e priorização de riscos
+# `Yummers` - Aplicativo de delivery
+
+### Conteúdo da página:
+
+> [8.1 Critérios de probabilidade](#81-critérios-de-probabilidade)<br>
+> [8.2 Critérios de impacto](#82-critérios-de-impacto)<br>
+> [8.3 Cálculo e classificação](#83-cálculo-e-classificação)<br>
+> [8.4 Registro de riscos](#84-registro-de-riscos)<br>
+> [8.5 Justificativas](#85-justificativas)<br>
+> [8.6 Priorização](#86-priorização)<br>
+> [8.7 Conclusão da análise](#87-conclusão-da-análise)<br>
+
+---
+
+## 🛡️ 8. Análise e priorização de riscos
 
 A análise de riscos foi elaborada com base nas ameaças identificadas por meio do STRIDE e nos casos de abuso apresentados anteriormente.
 

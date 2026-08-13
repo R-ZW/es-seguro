@@ -1,3 +1,19 @@
+# `Yummers` - Aplicativo de delivery
+
+### Conteúdo da página:
+
+> [11.1 Objetivo](#111-objetivo)<br>
+> [11.2 Práticas selecionadas](#112-práticas-selecionadas)<br>
+> [11.3 Prática 1 — Validação de entrada e recálculo do valor do pedido](#113-prática-1--validação-de-entrada-e-recálculo-do-valor-do-pedido)<br>
+> [11.4 Prática 2 — Controle de autorização no backend](#114-prática-2--controle-de-autorização-no-backend)<br>
+> [11.5 Testes automatizados](#115-testes-automatizados)<br>
+> [11.6 Referências utilizadas](#116-referências-utilizadas)<br>
+> [11.7 Conclusão da Etapa 4](#117-conclusão-da-etapa-4)<br>
+
+---
+
+## 💻 11. Código seguro e testes de segurança
+
 ### 11.1 Objetivo
 
 O objetivo desta etapa é demonstrar como decisões de arquitetura definidas anteriormente podem virar práticas simples de implementação segura.

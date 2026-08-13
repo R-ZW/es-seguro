@@ -1,4 +1,17 @@
-## 18.1 Requisitos de segurança
+# `Yummers` - Aplicativo de delivery
+
+### Conteúdo da página:
+
+> [10.1 Requisitos de segurança](#101-requisitos-de-segurança)<br>
+> [10.2 Vulnerabilidades catalogadas](#102-vulnerabilidades-catalogadas)<br>
+> [10.3 Diagrama da arquitetura segura](#103-diagrama-da-arquitetura-segura)<br>
+> [10.4 Decisões de arquitetura](#104-decisões-de-arquitetura)<br>
+
+---
+
+## 10. 🏗️ Arquitetura segura
+
+### 10.1 Requisitos de segurança
 
 Esta seção traduz as ameaças e riscos previamente priorizados em requisitos de segurança acionáveis. Cada requisito define uma restrição ou comportamento obrigatório para o sistema, acompanhado de um critério de verificação claro para garantir sua correta implementação e validação durante o ciclo de desenvolvimento
 
@@ -11,7 +24,7 @@ Esta seção traduz as ameaças e riscos previamente priorizados em requisitos d
 
 ---
 
-## 18.2 Vulnerabilidades catalogadas
+### 10.2 Vulnerabilidades catalogadas
 
 Para fundamentar as estratégias de mitigação, esta seção mapeia os principais riscos identificados a vulnerabilidades e fraquezas de segurança reconhecidas pelo mercado. A utilização de catálogos padronizados, como OWASP e CWE, facilita a compreensão técnica do problema e orienta a equipe na adoção de práticas de desenvolvimento seguro.
 
@@ -24,7 +37,7 @@ Para fundamentar as estratégias de mitigação, esta seção mapeia os principa
 
 ---
 
-## 18.3 Diagrama da arquitetura segura
+### 10.3 Diagrama da arquitetura segura
 
 Abaixo é apresentada a representação visual da arquitetura segura estruturada para a plataforma. O diagrama `C4 Model` (nível de `Contaneirs`) destaca os principais componentes do sistema, as fronteiras de confiança, os fluxos de dados sensíveis e os pontos exatos onde os controles de segurança estabelecidos são aplicados.
 
@@ -36,7 +49,7 @@ Abaixo é apresentada a representação visual da arquitetura segura estruturada
 
 ---
 
-## 18.4 Decisões de arquitetura
+### 10.4 Decisões de arquitetura
 
 Estão documentadas as escolhas estratégicas de design de software adotadas para mitigar os riscos catalogados. O registro de cada decisão detalha o problema original, a abordagem escolhida, a justificativa técnica e o resultado esperado, garantindo total rastreabilidade entre a análise de ameaças e a arquitetura final implementada.
 

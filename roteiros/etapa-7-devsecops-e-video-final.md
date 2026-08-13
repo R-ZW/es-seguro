@@ -1,3 +1,20 @@
+# `Yummers` - Aplicativo de delivery
+
+### Conteúdo da página:
+
+> [1. Objetivo](#1-objetivo) <br>
+> [2. Pipeline DevSecOps Proposto](#2-pipeline-devsecops-proposto) <br>
+> [2.1 Condições de bloqueio do pipeline](#21-condições-de-bloqueio-do-pipeline) <br>
+> [2.2 Integração com as etapas anteriores](#22-integração-com-as-etapas-anteriores) <br>
+> [3. Roteiro do Vídeo Final](#3-roteiro-do-vídeo-final) <br>
+> [3.1 Pontos que devem aparecer no vídeo](#31-pontos-que-devem-aparecer-no-vídeo) <br>
+> [3.2 Observação sobre participação](#32-observação-sobre-participação) <br>
+> [4. Critérios de avaliação atendidos](#4-critérios-de-avaliação-atendidos) <br>
+
+---
+
+## 🎥 Etapa 7 - DevSecOps e vídeo final
+
 ## 1. Objetivo
 
 O objetivo desta etapa é integrar o que foi produzido ao longo da disciplina e demonstrar como a segurança pode acompanhar continuamente o ciclo de desenvolvimento do `Yummers`, desde a análise de ameaças até a operação.

@@ -1,4 +1,15 @@
-## 5. Modelagem de ameaças com STRIDE
+# `Yummers` - Aplicativo de delivery
+
+### Conteúdo da página:
+
+> [5.1 Listagem das ameaças](#51-listagem-das-ameaças)<br>
+> [5.2 Interpretação e análise](#52-interpretação-e-análise)<br>
+
+---
+
+## 🎯 5. Modelagem de ameaças com STRIDE
+
+### 5.1 Listagem das ameaças
 
 | ID | Categoria STRIDE | Componente ou ativo | Ameaça identificada | Possível impacto |
 | --- | --- | --- | --- | --- |
@@ -29,7 +40,7 @@
 | T25 | Elevation of Privilege | Fluxo de aprovação de estabelecimentos ou entregadores | Um Estabelecimento ou Entregador com cadastro ainda pendente consegue acessar funcionalidades operacionais reservadas a parceiros já aprovados. | Operação de parceiros não validados na plataforma, riscos de fraude e segurança para clientes que interagem com eles sem saber |
 | T26 | Elevation of Privilege | Liberação de repasse/caução (fluxo de escrow) | Um Estabelecimento ou Entregador aciona diretamente o endpoint interno responsável por liberar o repasse, sem que a validação real da Chave de Coleta/Entrega tenha ocorrido, por falta de checagem server-side de que a etapa anterior do fluxo foi cumprida | Liberação indevida de valores retidos em custódia sem entrega efetivamente confirmada, prejuízo financeiro direto à plataforma/cliente |
 
-### 5.1 Interpretação e análise
+### 5.2 Interpretação e análise
 
 A análise das ameaças evidencia a necessidade de proteger diferentes aspectos da plataforma. A autenticação deve garantir que cada usuário seja corretamente identificado; as informações e operações dos pedidos devem manter sua integridade; as ações realizadas no sistema precisam ser rastreáveis e passíveis de comprovação; os dados pessoais, financeiros e de localização devem permanecer restritos a quem possui autorização; os principais serviços devem continuar disponíveis mesmo diante de tentativas de indisponibilização; e as funcionalidades de maior privilégio devem estar limitadas aos perfis que realmente possuem permissão para executá-las.
 
