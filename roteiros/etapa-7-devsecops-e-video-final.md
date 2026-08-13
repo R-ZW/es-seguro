@@ -71,3 +71,15 @@ O pipeline deve ser interrompido quando uma condição de segurança impedir a c
 ### 3.2 Observação sobre participação
 
 Todos os integrantes devem aparecer ou narrar uma parte do vídeo. A divisão proposta ajuda a evidenciar participação individual, mas a avaliação também poderá considerar os commits e contribuições feitas nas etapas do repositório.
+
+## 4. Critérios de avaliação atendidos
+
+| Critério | Como foi contemplado |
+| :--- | :--- |
+| **Integração entre as etapas** | O pipeline referencia ameaças, riscos, decisões, código seguro, testes, verificação e operação. |
+| **Compreensão de DevSecOps** | A segurança acompanha todo o ciclo: planejamento, código, verificação, deploy e operação. |
+| **Coerência do pipeline** | Cada momento possui atividade, evidência e condição para continuar. |
+| **Qualidade das condições de segurança** | Há gates objetivos para testes falhos, controle de acesso, segredos, dependências vulneráveis e achados críticos. |
+| **Clareza e objetividade do vídeo** | O roteiro divide o vídeo em blocos curtos, com tempo, responsável, fala e visual. |
+| **Capacidade de apresentar decisões e aprendizados** | O roteiro conecta riscos a decisões e finaliza com aprendizados individuais. |
+| **Participação individual** | A divisão por responsável facilita a participação dos quatro integrantes. |
