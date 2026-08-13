@@ -1,10 +1,10 @@
-## 30. Objetivo
+## 1. Objetivo
 
 O objetivo desta etapa é integrar o que foi produzido ao longo da disciplina e demonstrar como a segurança pode acompanhar continuamente o ciclo de desenvolvimento do `Yummers`, desde a análise de ameaças até a operação.
 
 Não foi implementado um pipeline real. A proposta abaixo descreve uma esteira DevSecOps textual, com evidências esperadas e condições de segurança que impediriam a continuidade do fluxo.
 
-## 31. Pipeline DevSecOps Proposto
+## 2. Pipeline DevSecOps Proposto
 
 | Momento | Atividade de segurança | Evidência produzida | Condição para continuar |
 | :--- | :--- | :--- | :--- |
@@ -17,7 +17,7 @@ Não foi implementado um pipeline real. A proposta abaixo descreve uma esteira D
 | **Implantação** | Publicação controlada após aprovação das verificações de segurança | Registro do deploy e evidências dos quality gates | Deploy autorizado apenas se os gates anteriores forem aprovados |
 | **Monitoramento e resposta** | Coleta de logs, regras de detecção, alertas e plano de resposta | Alertas, registros de eventos, painéis e ações de resposta | Incidentes investigados, tratados e usados para retroalimentar o backlog |
 
-### 31.1 Condições de bloqueio do pipeline
+### 2.1 Condições de bloqueio do pipeline
 
 O pipeline deve ser interrompido quando uma condição de segurança impedir a continuidade segura do projeto. Para o `Yummers`, as principais condições impeditivas seriam:
 
@@ -27,7 +27,7 @@ O pipeline deve ser interrompido quando uma condição de segurança impedir a c
 4. **Dependência conhecida como vulnerável:** uma biblioteca, imagem ou componente usado pelo sistema possui vulnerabilidade crítica ou alta sem tratamento.
 5. **Vulnerabilidade crítica não analisada:** achado crítico de SAST, SCA, DAST ou pentest permanece sem correção, justificativa ou aceite formal.
 
-### 31.2 Integração com as etapas anteriores
+### 2.2 Integração com as etapas anteriores
 
 | Etapa anterior | Como entra no pipeline |
 | :--- | :--- |
@@ -37,3 +37,37 @@ O pipeline deve ser interrompido quando uma condição de segurança impedir a c
 | **Etapa 4 — Código seguro e testes** | Demonstra duas práticas implementáveis: validação de entrada/valor do pedido e controle de autorização. |
 | **Etapas de verificação e detecção** | Produzem evidências de testes dinâmicos, alertas, logs e regras de resposta. |
 | **Etapa 7 — DevSecOps e vídeo final** | Integra as evidências e mostra a evolução do projeto. |
+
+
+## 3. Roteiro do Vídeo Final
+
+**Tempo estimado:** 5 a 8 minutos.  
+**Participantes:** André, Erik, Miguel e Reinaldo.
+
+| Tempo aprox. | Responsável | Seção | Descrição da fala e conteúdo visual |
+| :--- | :--- | :--- | :--- |
+| **0:00 - 0:50** | **André** | **Descrição geral do sistema** | [...] |
+| **0:50 - 1:50** | **André** | **Etapa 1** | [...] |
+| **1:50 - 2:40** | **Erik** | **Etapa 2** | [...] |
+| **2:40 - 3:30** | **Erik** | **Etapa 3** | [...] |
+| **3:30 - 4:30** | **Miguel** | **Etapa 4** | [...] |
+| **4:30 - 5:20** | **Miguel** | **Etapa 5** | [...] |
+| **5:20 - 6:20** | **Reinaldo** | **Etapa 6** | [...] |
+| **6:20 - 7:20** | **Reinaldo** | **Etapa 7** | [...] |
+| **7:20 - 8:00** | **Todos** | **Conclusão** | [...] |
+
+### 3.1 Pontos que devem aparecer no vídeo
+
+- sistema escolhido: `Yummers`;
+- principais ameaças e casos de abuso;
+- riscos prioritários;
+- decisões de arquitetura;
+- práticas de código seguro da Etapa 4;
+- principais resultados da verificação;
+- regras de detecção e resposta;
+- pipeline DevSecOps proposto;
+- aprendizados do grupo.
+
+### 3.2 Observação sobre participação
+
+Todos os integrantes devem aparecer ou narrar uma parte do vídeo. A divisão proposta ajuda a evidenciar participação individual, mas a avaliação também poderá considerar os commits e contribuições feitas nas etapas do repositório.
