@@ -43,3 +43,73 @@ A sessão de verificação identificou 10 alertas distribuídos entre os níveis
 | **Private IP Disclosure / X-Content-Type-Options Header Missing** | Risco Baixo / Confiança Média | Baixo impacto isolado (IP interno de laboratório e cabeçalho de MIME-sniffing); tratados como enriquecimento dos achados de A02, não como itens autônomos |
 | **Divulgação de Data e Hora - Unix** (timestamp em styles.css) | Risco Baixo / Confiança Baixa | Falso positivo provável: o timestamp está embutido em um arquivo CSS de terceiros (biblioteca de ícones), sem relação com dados sensíveis da aplicação |
 | **Modern Web Application / User Agent Fuzzer** | Informativo | Alertas informativos do próprio ZAP (recomendação de uso do Ajax Spider e checagem de diferenças por User-Agent, sem diferença encontrada); não representam vulnerabilidade |
+
+---
+<center>
+<table width="100%">
+<tr>
+<td align="left">
+
+[⬅️ Página anterior](../etapa-4/11%20-%20Código%20seguro%20e%20testes%20de%20segurança.md)
+
+</td>
+
+<td align="center">
+
+1️⃣0️⃣
+
+</td>
+
+<td align="right">
+
+[Próxima página ➡️](../../roteiros/etapa-6-deteccao-de-intrusoes.md)
+
+</td>
+</tr>
+</table>
+</center>
+
+### **Índice**:
+
+**Etapa 1**:
+
+1. [**🆔 Identificação do sistema**](../../README.md)
+2. [**📝 Descrição do sistema**](../../README.md)
+3. [**👥 Usuários, ativos e pontos de interação**](../etapa-1/3%20-%20Usuários,%20ativos%20e%20pontos%20de%20interação.md)
+4. [**🔀 Visão geral da arquitetura e fluxos de uso**](../etapa-1/4%20-%20Visão%20geral%20da%20arquitetura%20e%20fluxos%20de%20uso.md) 
+5. [**🎯 Modelagem de ameaças com STRIDE**](../etapa-1/5%20-%20Modelagem%20de%20ameaças%20com%20STRIDE.md)
+6. [**🚨 Casos de abuso**](../etapa-1/6%20-%20Casos%20de%20abuso.md)
+7. [**📌 Considerações finais da Etapa 1**](../etapa-1/7%20-%20Considerações%20finais%20da%20Etapa%201.md)
+
+
+**Etapa 2**:
+
+8. [**🛡️ Análise e priorização dos riscos**](../etapa-2/8%20-%20Análise%20e%20priorização%20dos%20riscos.md)
+9. [**🧩 Tratamento dos riscos com NIST CSF**](../etapa-2/#9-tratamento-dos-riscos-com-nist-csf)
+
+
+**Etapa 3**:
+
+10. [**🏗️ Arquitetura segura**](../etapa-3/10%20-%20Arquitetura%20segura.md)
+
+
+**Etapa 4**:
+
+11. [**💻 Código seguro e testes de segurança**](../etapa-4/11%20-%20Código%20seguro%20e%20testes%20de%20segurança.md)
+
+
+**Etapa 5**:
+
+12. [**🔎 Verificação de vulnerabilidades**](#) 👈
+
+
+**Etapa 6**:
+
+13. [**📡 Monitoramento e detecção de intrusões**](../../roteiros/etapa-6-deteccao-de-intrusoes.md)
+
+
+**Etapa 7**:
+
+14. [**🎥 DevSecOps e vídeo final**](../../roteiros/etapa-7-devsecops-e-video-final.md)
+
+---

@@ -255,3 +255,73 @@ A aplicação do STRIDE permitiu identificar diferentes ameaças, mas a avaliaç
 Os riscos críticos e altos deverão receber atenção inicial, especialmente aqueles relacionados à disponibilidade da plataforma, à segurança das transações financeiras e à proteção dos dados pessoais de clientes, entregadores e estabelecimentos.
 
 A classificação atual representa uma avaliação preliminar baseada no contexto operacional conhecido. Ela poderá ser revisada à medida que a arquitetura evoluir ou quando surgirem novas informações sobre o sistema, o comportamento dos usuários ou incidentes observados.
+
+---
+<center>
+<table width="100%">
+<tr>
+<td align="left">
+
+[⬅️ Página anterior](../etapa-1/7%20-%20Considerações%20finais%20da%20Etapa%201.md)
+
+</td>
+
+<td align="center">
+
+6️⃣
+
+</td>
+
+<td align="right">
+
+[Próxima página ➡️](9%20-%20Tratamento%20dos%20riscos%20com%20NIST%20CSF.md)
+
+</td>
+</tr>
+</table>
+</center>
+
+### **Índice**:
+
+**Etapa 1**:
+
+1. [**🆔 Identificação do sistema**](../../README.md)
+2. [**📝 Descrição do sistema**](../../README.md)
+3. [**👥 Usuários, ativos e pontos de interação**](../etapa-1/3%20-%20Usuários,%20ativos%20e%20pontos%20de%20interação.md)
+4. [**🔀 Visão geral da arquitetura e fluxos de uso**](../etapa-1/4%20-%20Visão%20geral%20da%20arquitetura%20e%20fluxos%20de%20uso.md) 
+5. [**🎯 Modelagem de ameaças com STRIDE**](../etapa-1/5%20-%20Modelagem%20de%20ameaças%20com%20STRIDE.md)
+6. [**🚨 Casos de abuso**](../etapa-1/6%20-%20Casos%20de%20abuso.md)
+7. [**📌 Considerações finais da Etapa 1**](../etapa-1/7%20-%20Considerações%20finais%20da%20Etapa%201.md)
+
+
+**Etapa 2**:
+
+8. [**🛡️ Análise e priorização dos riscos**](#8-análise-e-priorização-de-riscos) 👈
+9. [**🧩 Tratamento dos riscos com NIST CSF**](9%20-%20Tratamento%20dos%20riscos%20com%20NIST%20CSF.md)
+
+
+**Etapa 3**:
+
+10. [**🏗️ Arquitetura segura**](../etapa-3/10%20-%20Arquitetura%20segura.md)
+
+
+**Etapa 4**:
+
+11. [**💻 Código seguro e testes de segurança**](../etapa-4/11%20-%20Código%20seguro%20e%20testes%20de%20segurança.md)
+
+
+**Etapa 5**:
+
+12. [**🔎 Verificação de vulnerabilidades**](../etapa-5/12%20-%20Verificação%20de%20vulnerabilidades.md)
+
+
+**Etapa 6**:
+
+13. [**📡 Monitoramento e detecção de intrusões**](../../roteiros/etapa-6-deteccao-de-intrusoes.md)
+
+
+**Etapa 7**:
+
+14. [**🎥 DevSecOps e vídeo final**](../../roteiros/etapa-7-devsecops-e-video-final.md)
+
+---

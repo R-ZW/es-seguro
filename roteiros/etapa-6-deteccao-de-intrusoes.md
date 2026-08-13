@@ -291,3 +291,73 @@ Abaixo está o índice de arquivos anexados a este roteiro:
 * **[Anexo C — Guia de Reprodução](./anexos/anexo-c-como-reproduzir.md)**: Passo a passo rápido com os comandos para instalar o Snort, aplicar as configurações e disparar os testes locais.
 * **[Anexo D — Documentação completa de setup do ambiente](./anexos/anexo-d-setup-ambiente.md)**: Tutorial integral de infraestrutura para montar a topologia de rede no VirtualBox e instalar todas as dependências do zero.
 * **[Anexo E — Log de alertas completo](./anexos/anexo-e-alert_fast.log)**: Arquivo de log bruto gerado pelo Snort durante a bateria de testes, contendo todos os 336 alertas disparados.
+
+---
+<center>
+<table width="100%">
+<tr>
+<td align="left">
+
+[⬅️ Página anterior](../docs/etapa-5/12%20-%20Verificação%20de%20vulnerabilidades.md)
+
+</td>
+
+<td align="center">
+
+1️⃣1️⃣
+
+</td>
+
+<td align="right">
+
+[Próxima página ➡️](etapa-7-devsecops-e-video-final.md)
+
+</td>
+</tr>
+</table>
+</center>
+
+### **Índice**:
+
+**Etapa 1**:
+
+1. [**🆔 Identificação do sistema**](../README.md)
+2. [**📝 Descrição do sistema**](../README.md)
+3. [**👥 Usuários, ativos e pontos de interação**](../docs/etapa-1/3%20-%20Usuários,%20ativos%20e%20pontos%20de%20interação.md)
+4. [**🔀 Visão geral da arquitetura e fluxos de uso**](../docs/etapa-1/4%20-%20Visão%20geral%20da%20arquitetura%20e%20fluxos%20de%20uso.md) 
+5. [**🎯 Modelagem de ameaças com STRIDE**](../docs/etapa-1/5%20-%20Modelagem%20de%20ameaças%20com%20STRIDE.md)
+6. [**🚨 Casos de abuso**](../docs/etapa-1/6%20-%20Casos%20de%20abuso.md)
+7. [**📌 Considerações finais da Etapa 1**](../docs/etapa-1/7%20-%20Considerações%20finais%20da%20Etapa%201.md)
+
+
+**Etapa 2**:
+
+8. [**🛡️ Análise e priorização dos riscos**](../docs/etapa-2/8%20-%20Análise%20e%20priorização%20dos%20riscos.md)
+9. [**🧩 Tratamento dos riscos com NIST CSF**](../docs/etapa-2/#9-tratamento-dos-riscos-com-nist-csf)
+
+
+**Etapa 3**:
+
+10. [**🏗️ Arquitetura segura**](../docs/etapa-3/10%20-%20Arquitetura%20segura.md)
+
+
+**Etapa 4**:
+
+11. [**💻 Código seguro e testes de segurança**](../docs/etapa-4/11%20-%20Código%20seguro%20e%20testes%20de%20segurança.md)
+
+
+**Etapa 5**:
+
+12. [**🔎 Verificação de vulnerabilidades**](../docs/etapa-5/12%20-%20Verificação%20de%20vulnerabilidades.md)
+
+
+**Etapa 6**:
+
+13. [**📡 Monitoramento e detecção de intrusões**](#) 👈
+
+
+**Etapa 7**:
+
+14. [**🎥 DevSecOps e vídeo final**](etapa-7-devsecops-e-video-final.md)
+
+---

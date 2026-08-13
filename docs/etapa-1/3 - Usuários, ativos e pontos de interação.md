@@ -1,5 +1,13 @@
 # `Yummers` - Aplicativo de delivery
 
+### Sumário da página:
+
+> [3.1 Usuários e perfis](#31-usuários-e-perfis)<br>
+> [3.2 Ativos importantes](#32-ativos-importantes)<br>
+> [3.3 Pontos de interação e componentes](#33-pontos-de-interação-e-componentes)
+
+---
+
 ## 3. Usuários, ativos e pontos de interação
 
 ### 3.1 Usuários e perfis
@@ -49,30 +57,66 @@ Os principais ativos identificados que precisam ser protegidos são:
 <tr>
 <td align="left">
 
-[⬅️ Página anterior](./../../README.md)
+[⬅️ Página anterior](../../README.md)
+
 </td>
 
 <td align="center">
 
-2️⃣
+1️⃣
+
 </td>
 
 <td align="right">
 
-[Próxima página](#) ➡️
+[Próxima página ➡️](4%20-%20Visão%20geral%20da%20arquitetura%20e%20fluxos%20de%20uso.md)
+
 </td>
 </tr>
 </table>
 </center>
 
-### Sumário:
+### **Índice**:
 
-1. [🆔 Identificação do sistema](./../../README.md)  
-2. [📝 Descrição do sistema](./../../README.md) 
-3. [👥 Usuários, ativos e pontos de interação](#) 👈
-4. [🔀 Visão geral da arquitetura e fluxos de uso](#)
-5. [🎯 Modelagem de ameaças com STRIDE](#)
-6. [🚨 Casos de abuso](#)
-7. [📌 Considerações finais](#)
+**Etapa 1**:
+
+1. [**🆔 Identificação do sistema**](../../README.md)
+2. [**📝 Descrição do sistema**](../../README.md)
+3. [**👥 Usuários, ativos e pontos de interação**](#3-usuários-ativos-e-pontos-de-interação) 👈
+4. [**🔀 Visão geral da arquitetura e fluxos de uso**](4%20-%20Visão%20geral%20da%20arquitetura%20e%20fluxos%20de%20uso.md)
+5. [**🎯 Modelagem de ameaças com STRIDE**](5%20-%20Modelagem%20de%20ameaças%20com%20STRIDE.md)
+6. [**🚨 Casos de abuso**](6%20-%20Casos%20de%20abuso.md)
+7. [**📌 Considerações finais da Etapa 1**](7%20-%20Considerações%20finais%20da%20Etapa%201.md)
+
+
+**Etapa 2**:
+
+8. [**🛡️ Análise e priorização dos riscos**](../etapa-2/8%20-%20Análise%20e%20priorização%20dos%20riscos.md)
+9. [**🧩 Tratamento dos riscos com NIST CSF**](../etapa-2/9%20-%20Tratamento%20dos%20riscos%20com%20NIST%20CSF.md)
+
+
+**Etapa 3**:
+
+10. [**🏗️ Arquitetura segura**](../etapa-3/10%20-%20Arquitetura%20segura.md)
+
+
+**Etapa 4**:
+
+11. [**💻 Código seguro e testes de segurança**](../etapa-4/11%20-%20Código%20seguro%20e%20testes%20de%20segurança.md)
+
+
+**Etapa 5**:
+
+12. [**🔎 Verificação de vulnerabilidades**](../etapa-5/12%20-%20Verificação%20de%20vulnerabilidades.md)
+
+
+**Etapa 6**:
+
+13. [**📡 Monitoramento e detecção de intrusões**](../../roteiros/etapa-6-deteccao-de-intrusoes.md)
+
+
+**Etapa 7**:
+
+14. [**🎥 DevSecOps e vídeo final**](../../roteiros/etapa-7-devsecops-e-video-final.md)
 
 ---

@@ -645,3 +645,73 @@
 **Impacto esperado:** acesso indevido a informações e operações administrativas, possibilidade de alteração de dados ou configurações da plataforma e comprometimento da confiança nos mecanismos de controle de privilégios.
 
 **Categorias STRIDE relacionadas:** Elevation of Privilege.
+
+---
+<center>
+<table width="100%">
+<tr>
+<td align="left">
+
+[⬅️ Página anterior](5%20-%20Modelagem%20de%20ameaças%20com%20STRIDE.md)
+
+</td>
+
+<td align="center">
+
+4️⃣
+
+</td>
+
+<td align="right">
+
+[Próxima página ➡️](7%20-%20Considerações%20finais%20da%20Etapa%201.md)
+
+</td>
+</tr>
+</table>
+</center>
+
+### **Índice**:
+
+**Etapa 1**:
+
+1. [**🆔 Identificação do sistema**](../../README.md)
+2. [**📝 Descrição do sistema**](../../README.md)
+3. [**👥 Usuários, ativos e pontos de interação**](3%20-%20Usuários,%20ativos%20e%20pontos%20de%20interação.md)
+4. [**🔀 Visão geral da arquitetura e fluxos de uso**](4%20-%20Visão%20geral%20da%20arquitetura%20e%20fluxos%20de%20uso.md) 
+5. [**🎯 Modelagem de ameaças com STRIDE**](5%20-%20Modelagem%20de%20ameaças%20com%20STRIDE.md)
+6. [**🚨 Casos de abuso**](#6-casos-de-abuso) 👈
+7. [**📌 Considerações finais da Etapa 1**](7%20-%20Considerações%20finais%20da%20Etapa%201.md)
+
+
+**Etapa 2**:
+
+8. [**🛡️ Análise e priorização dos riscos**](../etapa-2/8%20-%20Análise%20e%20priorização%20dos%20riscos.md)
+9. [**🧩 Tratamento dos riscos com NIST CSF**](../etapa-2/9%20-%20Tratamento%20dos%20riscos%20com%20NIST%20CSF.md)
+
+
+**Etapa 3**:
+
+10. [**🏗️ Arquitetura segura**](../etapa-3/10%20-%20Arquitetura%20segura.md)
+
+
+**Etapa 4**:
+
+11. [**💻 Código seguro e testes de segurança**](../etapa-4/11%20-%20Código%20seguro%20e%20testes%20de%20segurança.md)
+
+
+**Etapa 5**:
+
+12. [**🔎 Verificação de vulnerabilidades**](../etapa-5/12%20-%20Verificação%20de%20vulnerabilidades.md)
+
+
+**Etapa 6**:
+
+13. [**📡 Monitoramento e detecção de intrusões**](../../roteiros/etapa-6-deteccao-de-intrusoes.md)
+
+
+**Etapa 7**:
+
+14. [**🎥 DevSecOps e vídeo final**](../../roteiros/etapa-7-devsecops-e-video-final.md)
+
+---

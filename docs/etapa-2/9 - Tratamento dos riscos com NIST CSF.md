@@ -174,3 +174,73 @@ A etapa de priorização permitiu identificar quais riscos devem receber atenç�
 A abordagem de tratamento proposta reúne políticas, definição de responsabilidades, mecanismos técnicos, atividades de monitoramento e procedimentos de resposta. Isso evidencia que a segurança não depende da aplicação de um único controle, nem se limita à prevenção de ataques.
 
 Os controles propostos ainda precisam ser detalhados durante o desenvolvimento da arquitetura, posteriormente implementados e, então, avaliados quanto à sua efetividade. Apenas com a obtenção de evidências por meio dessas etapas será possível verificar se houve uma redução efetiva dos riscos e determinar se o nível de risco residual poderá ser formalmente aceito.
+
+---
+<center>
+<table width="100%">
+<tr>
+<td align="left">
+
+[⬅️ Página anterior](8%20-%20Análise%20e%20priorização%20dos%20riscos.md)
+
+</td>
+
+<td align="center">
+
+7️⃣
+
+</td>
+
+<td align="right">
+
+[Próxima página ➡️](../etapa-3/10%20-%20Arquitetura%20segura.md)
+
+</td>
+</tr>
+</table>
+</center>
+
+### **Índice**:
+
+**Etapa 1**:
+
+1. [**🆔 Identificação do sistema**](../../README.md)
+2. [**📝 Descrição do sistema**](../../README.md)
+3. [**👥 Usuários, ativos e pontos de interação**](../etapa-1/3%20-%20Usuários,%20ativos%20e%20pontos%20de%20interação.md)
+4. [**🔀 Visão geral da arquitetura e fluxos de uso**](../etapa-1/4%20-%20Visão%20geral%20da%20arquitetura%20e%20fluxos%20de%20uso.md) 
+5. [**🎯 Modelagem de ameaças com STRIDE**](../etapa-1/5%20-%20Modelagem%20de%20ameaças%20com%20STRIDE.md)
+6. [**🚨 Casos de abuso**](../etapa-1/6%20-%20Casos%20de%20abuso.md)
+7. [**📌 Considerações finais da Etapa 1**](../etapa-1/7%20-%20Considerações%20finais%20da%20Etapa%201.md)
+
+
+**Etapa 2**:
+
+8. [**🛡️ Análise e priorização dos riscos**](8%20-%20Análise%20e%20priorização%20dos%20riscos.md)
+9. [**🧩 Tratamento dos riscos com NIST CSF**](#9-tratamento-dos-riscos-com-nist-csf) 👈
+
+
+**Etapa 3**:
+
+10. [**🏗️ Arquitetura segura**](../etapa-3/10%20-%20Arquitetura%20segura.md)
+
+
+**Etapa 4**:
+
+11. [**💻 Código seguro e testes de segurança**](../etapa-4/11%20-%20Código%20seguro%20e%20testes%20de%20segurança.md)
+
+
+**Etapa 5**:
+
+12. [**🔎 Verificação de vulnerabilidades**](../etapa-5/12%20-%20Verificação%20de%20vulnerabilidades.md)
+
+
+**Etapa 6**:
+
+13. [**📡 Monitoramento e detecção de intrusões**](../../roteiros/etapa-6-deteccao-de-intrusoes.md)
+
+
+**Etapa 7**:
+
+14. [**🎥 DevSecOps e vídeo final**](../../roteiros/etapa-7-devsecops-e-video-final.md)
+
+---

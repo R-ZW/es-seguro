@@ -1,5 +1,12 @@
 # `Yummers` - Aplicativo de delivery
 
+### Sumário da página:
+
+> [1. Identificação do sistema](#-1-identificação-do-sistema)<br>
+> [2. Descrição do sistema](#-2-descrição-do-sistema)<br>
+
+---
+
 ## 🆔 1. Identificação do sistema
 
 > **Nome do sistema:** `Yummers` - Aplicativo de delivery<br>
@@ -27,29 +34,65 @@ O `Yummers` é uma **plataforma de delivery** que intermedia a conexão entre cl
 <td align="left">
 
 ⬅️ Página anterior
+
 </td>
 
 <td align="center">
 
-1️⃣
+0️⃣
+
 </td>
 
 <td align="right">
 
-[Próxima página ➡️](./docs/etapa-1/3%20-%20Usuários,%20ativos%20e%20pontos%20de%20interação.md)
+[Próxima página ➡️](docs/etapa-1/3%20-%20Usuários,%20ativos%20e%20pontos%20de%20interação.md)
+
 </td>
 </tr>
 </table>
 </center>
 
-### Sumário:
+### **Índice**:
 
-1. [🆔 Identificação do sistema](#-1-identificação-do-sistema) 👈 
-2. [📝 Descrição do sistema](#-2-descrição-do-sistema) 👈
-3. [👥 Usuários, ativos e pontos de interação](docs/etapa-1/3%20-%20Usuários,%20ativos%20e%20pontos%20de%20interação.md)
-4. [🔀 Visão geral da arquitetura e fluxos de uso](#)
-5. [🎯 Modelagem de ameaças com STRIDE](#)
-6. [🚨 Casos de abuso](#)
-7. [📌 Considerações finais](#)
+**Etapa 1**:
+
+1. [**🆔 Identificação do sistema**](#-1-identificação-do-sistema) 👈
+2. [**📝 Descrição do sistema**](#-2-descrição-do-sistema) 👈
+3. [**👥 Usuários, ativos e pontos de interação**](docs/etapa-1/3%20-%20Usuários,%20ativos%20e%20pontos%20de%20interação.md) 
+4. [**🔀 Visão geral da arquitetura e fluxos de uso**](docs/etapa-1/4%20-%20Visão%20geral%20da%20arquitetura%20e%20fluxos%20de%20uso.md)
+5. [**🎯 Modelagem de ameaças com STRIDE**](docs/etapa-1/5%20-%20Modelagem%20de%20ameaças%20com%20STRIDE.md)
+6. [**🚨 Casos de abuso**](docs/etapa-1/6%20-%20Casos%20de%20abuso.md)
+7. [**📌 Considerações finais da Etapa 1**](docs/etapa-1/7%20-%20Considerações%20finais%20da%20Etapa%201.md)
+
+
+**Etapa 2**:
+
+8. [**🛡️ Análise e priorização dos riscos**](docs/etapa-2/8%20-%20Análise%20e%20priorização%20dos%20riscos.md)
+9. [**🧩 Tratamento dos riscos com NIST CSF**](docs/etapa-2/9%20-%20Tratamento%20dos%20riscos%20com%20NIST%20CSF.md)
+
+
+**Etapa 3**:
+
+10. [**🏗️ Arquitetura segura**](docs/etapa-3/10%20-%20Arquitetura%20segura.md)
+
+
+**Etapa 4**:
+
+11. [**💻 Código seguro e testes de segurança**](docs/etapa-4/11%20-%20Código%20seguro%20e%20testes%20de%20segurança.md)
+
+
+**Etapa 5**:
+
+12. [**🔎 Verificação de vulnerabilidades**](docs/etapa-5/12%20-%20Verificação%20de%20vulnerabilidades.md)
+
+
+**Etapa 6**:
+
+13. [**📡 Monitoramento e detecção de intrusões**](roteiros/etapa-6-deteccao-de-intrusoes.md)
+
+
+**Etapa 7**:
+
+14. [**🎥 DevSecOps e vídeo final**](roteiros/etapa-7-devsecops-e-video-final.md)
 
 ---

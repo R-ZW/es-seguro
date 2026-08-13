@@ -45,3 +45,73 @@ Estão documentadas as escolhas estratégicas de design de software adotadas par
 | **1. Exigir reautenticação em operações sensíveis** | R01 — Uso indevido da conta de um cliente | Um atacante com uma sessão sequestrada ou credenciais vazadas pode realizar pedidos fraudulentos usando os cartões salvos do cliente. | Implementar uma camada de "Step-up Authentication" (reautenticação biométrica, senha ou OTP) para finalizar transações fora do padrão ou alterar dados da conta. | Uma sessão ativa não garante que o operador atual é o titular legítimo. O desafio adicional barra a exploração de sessões sequestradas no momento mais crítico (movimentação financeira). | Serviço de Identidade (IAM) e Módulo de Checkout. | Transações financeiras e alterações cadastrais críticas não são efetivadas sem a prova direta de identidade do titular. |
 | **2. Source of Truth (Fonte da Verdade) exclusiva no Servidor** | R04 — Manipulação do valor do pedido | O backend processa o pagamento baseando-se no valor final enviado pelo aplicativo, permitindo adulterações via proxy. | O servidor deve reconstruir o carrinho e recalcular o valor do zero, utilizando estritamente os preços, regras de desconto e taxas armazenados no banco de dados. | O ambiente do cliente (browser/app) não é confiável. Toda regra de precificação executada no frontend deve ser considerada meramente visual e descartada na consolidação. | API de Pedidos e Microsserviço de Pagamentos. | Pedidos com valores manipulados são automaticamente corrigidos ou invalidados antes do envio ao Gateway de Pagamento. |
 | **3. Centralização da camada de Autorização (Middleware de Acesso)** | R11 — Acesso a informações da conta e pedidos de outro usuário, R23 — Acesso não autorizado às funções administrativas | Verificações de permissão espalhadas pelo código facilitam o esquecimento de regras em alguns endpoints, permitindo IDOR e elevação de privilégio. | Implementar um *API Gateway* ou *Middleware* centralizado que verifique automaticamente a propriedade do recurso solicitado (BOLA) e as permissões do cargo (RBAC) antes de rotear a requisição. | A validação centralizada elimina o "fator humano" de esquecer de programar a checagem em um endpoint específico. A segurança se torna "by default" para toda nova rota criada. | API Gateway / Middleware de Autorização / Backend central. | Acesso não autorizado a dados de terceiros ou funções administrativas é consistentemente bloqueado com `HTTP 403`, independente do dispositivo cliente. |
+
+---
+<center>
+<table width="100%">
+<tr>
+<td align="left">
+
+[⬅️ Página anterior](../etapa-2/9%20-%20Tratamento%20dos%20riscos%20com%20NIST%20CSF.md)
+
+</td>
+
+<td align="center">
+
+8️⃣
+
+</td>
+
+<td align="right">
+
+[Próxima página ➡️](../etapa-4/11%20-%20Código%20seguro%20e%20testes%20de%20segurança.md)
+
+</td>
+</tr>
+</table>
+</center>
+
+### **Índice**:
+
+**Etapa 1**:
+
+1. [**🆔 Identificação do sistema**](../../README.md)
+2. [**📝 Descrição do sistema**](../../README.md)
+3. [**👥 Usuários, ativos e pontos de interação**](../etapa-1/3%20-%20Usuários,%20ativos%20e%20pontos%20de%20interação.md)
+4. [**🔀 Visão geral da arquitetura e fluxos de uso**](../etapa-1/4%20-%20Visão%20geral%20da%20arquitetura%20e%20fluxos%20de%20uso.md) 
+5. [**🎯 Modelagem de ameaças com STRIDE**](../etapa-1/5%20-%20Modelagem%20de%20ameaças%20com%20STRIDE.md)
+6. [**🚨 Casos de abuso**](../etapa-1/6%20-%20Casos%20de%20abuso.md)
+7. [**📌 Considerações finais da Etapa 1**](../etapa-1/7%20-%20Considerações%20finais%20da%20Etapa%201.md)
+
+
+**Etapa 2**:
+
+8. [**🛡️ Análise e priorização dos riscos**](../etapa-2/8%20-%20Análise%20e%20priorização%20dos%20riscos.md)
+9. [**🧩 Tratamento dos riscos com NIST CSF**](../etapa-2/#9-tratamento-dos-riscos-com-nist-csf)
+
+
+**Etapa 3**:
+
+10. [**🏗️ Arquitetura segura**](#) 👈
+
+
+**Etapa 4**:
+
+11. [**💻 Código seguro e testes de segurança**](../etapa-4/11%20-%20Código%20seguro%20e%20testes%20de%20segurança.md)
+
+
+**Etapa 5**:
+
+12. [**🔎 Verificação de vulnerabilidades**](../etapa-5/12%20-%20Verificação%20de%20vulnerabilidades.md)
+
+
+**Etapa 6**:
+
+13. [**📡 Monitoramento e detecção de intrusões**](../../roteiros/etapa-6-deteccao-de-intrusoes.md)
+
+
+**Etapa 7**:
+
+14. [**🎥 DevSecOps e vídeo final**](../../roteiros/etapa-7-devsecops-e-video-final.md)
+
+---
