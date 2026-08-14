@@ -70,7 +70,7 @@ O pipeline deve ser interrompido quando uma condição de segurança impedir a c
 | **4:30 - 5:20** | **Erik** | **Etapa 5** | Apresenta a sessão prática de verificação com a ferramenta OWASP ZAP. Aponta os achados mais críticos levantados nos alertas do relatório e como eles se ligam às ameaças. **Visual**: Repositório e captura de tela do relatório ZAP. |
 | **5:20 - 6:20** | **André** | **Etapa 6** | Destaca a configuração do IDS Snort no laboratório e as regras aplicadas. Mostra a detecção bem-sucedida de ataques de força bruta, injeção SQL e *DNS tunneling*. **Visual**: Repositório. |
 | **6:20 - 7:20** | **Miguel** | **Etapa 7** | Resume a esteira de DevSecOps, explicando em que etapas cada análise se encaixa e quais são as condições rígidas de parada (*Quality Gates*) para o deploy. **Visual**: Repositório. |
-| **7:20 - 8:00** | **Erik** | **Conclusão** | Reflexões e aprendizados ao longo do semestre: a mudança de mentalidade entre prevenir vulnerabilidades (*shift-left*) e detectar intrusões ativas. **Visual**: Repositório. |
+| **7:20 - 8:00** | **Todos** | **Conclusão** | Reflexões e aprendizados ao longo do semestre: a mudança de mentalidade entre prevenir vulnerabilidades (*shift-left*) e detectar intrusões ativas. **Visual**: Repositório. |
 
 
 
