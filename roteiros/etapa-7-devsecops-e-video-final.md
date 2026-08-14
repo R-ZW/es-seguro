@@ -55,7 +55,6 @@ O pipeline deve ser interrompido quando uma condição de segurança impedir a c
 | **Etapas de verificação e detecção** | Produzem evidências de testes dinâmicos, alertas, logs e regras de resposta. |
 | **Etapa 7 — DevSecOps e vídeo final** | Integra as evidências e mostra a evolução do projeto. |
 
-
 ## 3. Roteiro do Vídeo Final
 
 **Tempo estimado:** 5 a 8 minutos.  
@@ -63,15 +62,17 @@ O pipeline deve ser interrompido quando uma condição de segurança impedir a c
 
 | Tempo aprox. | Responsável | Seção | Descrição da fala e conteúdo visual |
 | :--- | :--- | :--- | :--- |
-| **0:00 - 0:50** | **André** | **Descrição geral do sistema** | [...] |
-| **0:50 - 1:50** | **André** | **Etapa 1** | [...] |
-| **1:50 - 2:40** | **Erik** | **Etapa 2** | [...] |
-| **2:40 - 3:30** | **Erik** | **Etapa 3** | [...] |
-| **3:30 - 4:30** | **Miguel** | **Etapa 4** | [...] |
-| **4:30 - 5:20** | **Miguel** | **Etapa 5** | [...] |
-| **5:20 - 6:20** | **Reinaldo** | **Etapa 6** | [...] |
-| **6:20 - 7:20** | **Reinaldo** | **Etapa 7** | [...] |
-| **7:20 - 8:00** | **Todos** | **Conclusão** | [...] |
+| **0:00 - 0:50** | **Reinaldo** | **Descrição geral do sistema** | Apresenta o `Yummers`, aplicativo de delivery com política de *escrow*, seus quatro perfis de usuário (cliente, estabelecimento, entregador e admin) e a importância da proteção dos dados. **Visual**: Repositório. |
+| **0:50 - 1:50** | **Reinaldo** | **Etapa 1** | Traz as principais ameaças STRIDE e Casos de Abuso levantados, com ênfase no spoofing de contas (T01) e adulteração do valor do pedido (T05), acesso como admin (T23,T24). **Visual**: Repositório. |
+| **1:50 - 2:40** | **André** | **Etapa 2** | Explica a priorização dos riscos com o framework NIST CSF. Destaca os riscos críticos, como o acesso a informações alheias e roubo de credenciais, apontando estratégias como MFA. **Visual**: Repositório. |
+| **2:40 - 3:30** | **Reinaldo** | **Etapa 3** | Expõe as decisões arquiteturais criadas para mitigar os riscos críticos: *Source of Truth* no servidor (calculando valores) e Middleware centralizado de autorização. **Visual**: Repositório. |
+| **3:30 - 4:30** | **Miguel** | **Etapa 4** | Demonstra como a arquitetura virou código seguro. Explica as práticas aplicadas (validação de valores e role-based access) e mostra os casos de testes antes de implementar. **Visual**: Repositório e execução dos testes. |
+| **4:30 - 5:20** | **Erik** | **Etapa 5** | Apresenta a sessão prática de verificação com a ferramenta OWASP ZAP. Aponta os achados mais críticos levantados nos alertas do relatório e como eles se ligam às ameaças. **Visual**: Repositório e captura de tela do relatório ZAP. |
+| **5:20 - 6:20** | **André** | **Etapa 6** | Destaca a configuração do IDS Snort no laboratório e as regras aplicadas. Mostra a detecção bem-sucedida de ataques de força bruta, injeção SQL e *DNS tunneling*. **Visual**: Repositório. |
+| **6:20 - 7:20** | **Miguel** | **Etapa 7** | Resume a esteira de DevSecOps, explicando em que etapas cada análise se encaixa e quais são as condições rígidas de parada (*Quality Gates*) para o deploy. **Visual**: Repositório. |
+| **7:20 - 8:00** | **Erik** | **Conclusão** | Reflexões e aprendizados ao longo do semestre: a mudança de mentalidade entre prevenir vulnerabilidades (*shift-left*) e detectar intrusões ativas. **Visual**: Repositório. |
+
+
 
 ### 3.1 Pontos que devem aparecer no vídeo
 
